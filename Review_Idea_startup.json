@@ -8,7 +8,7 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.4,
       "position": [
-        0,
+        -416,
         0
       ],
       "id": "a195faba-023d-45ad-9407-6cb927f810f9",
@@ -17,19 +17,17 @@
     },
     {
       "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When chat message received').item.json.chatInput }}",
         "hasOutputParser": true,
         "options": {
-<<<<<<< HEAD
-          "systemMessage": "You are an expert startup idea analyst.\n\nYour task is to analyze a startup/project idea objectively and practically.\n\nDo NOT judge the idea based on how exciting or innovative it sounds.\nEvaluate whether the idea solves a meaningful problem and has realistic business potential.\n\nAnalyze the following:\n\n1. Idea clarity\n2. Problem being solved\n3. Value proposition\n4. Target customer\n5. Current alternatives\n6. Differentiation\n7. Business potential\n8. Scalability\n9. Feasibility\n10. Overall attractiveness\n\nScoring:\n- Every score must be between 0 and 100.\n- Be realistic.\n- Do not give high scores simply to be positive.\n- Explain the reason behind every important score.\n\nImportant:\n- Clearly distinguish facts from assumptions.\n- If information is missing, explicitly identify it.\n- Do not invent market statistics, competitors, customer behavior, or financial data.\n- If external research is unavailable, say that the information needs validation.\n\nReturn ONLY valid JSON.\n\nJSON structure:\n\n{\n  \"idea_name\": \"\",\n  \"summary\": \"\",\n  \"problem\": \"\",\n  \"solution\": \"\",\n  \"value_proposition\": \"\",\n  \"target_customer\": \"\",\n  \"scores\": {\n    \"problem_strength\": 0,\n    \"market_potential\": 0,\n    \"differentiation\": 0,\n    \"business_potential\": 0,\n    \"feasibility\": 0,\n    \"scalability\": 0,\n    \"overall\": 0\n  },\n  \"strengths\": [],\n  \"weaknesses\": [],\n  \"assumptions\": [],\n  \"key_questions\": [],\n  \"verdict\": \"\",\n  \"verdict_reason\": \"\"\n}"
-=======
-          "systemMessage": "=You are an expert Startup Idea Evaluator, Market Researcher, and Business Analyst.\n\nYour task is to evaluate a submitted startup/project idea objectively, critically, and practically.\n\nThe goal is NOT to determine whether the idea sounds exciting or innovative.\n\nThe goal is to determine:\n\n* Is there a meaningful problem?\n* Is the problem worth solving?\n* Who experiences the problem?\n* Does the proposed solution actually solve it?\n* Is there real market demand?\n* Will customers realistically pay?\n* Can the business compete and grow?\n* What assumptions still need validation?\n\nIMPORTANT:\nDo not automatically give positive scores.\nDo not judge the idea based on technical complexity or how impressive the technology sounds.\n\n==================================================\n\n1. IDEA UNDERSTANDING\n   ==================================================\n\nFirst understand the startup idea.\n\nAnalyze:\n\n* Idea clarity\n* Problem being solved\n* Proposed solution\n* Value proposition\n* Target customer\n* Current alternatives\n* Main differentiation\n* Business model if provided\n\nIf important information is missing, explicitly mark it as an assumption or validation requirement.\n\nNever invent missing information.\n\n==================================================\n2. PROBLEM VALIDATION\n=====================\n\nEvaluate the underlying problem independently from the proposed solution.\n\nAnalyze:\n\n* Problem intensity\n* Problem frequency\n* Urgency\n* Financial impact\n* Time impact\n* Frustration or risk caused by the problem\n* Existing alternatives and workarounds\n* Customer willingness to pay\n* Whether the problem is commercially meaningful\n\nClassify the problem as:\n\n\"Yes\" = The problem appears meaningful and commercially relevant.\n\n\"No\" = The problem appears weak, infrequent, low-impact, or unlikely to generate demand.\n\n\"Conditional\" = The problem could be valuable, but important assumptions require validation.\n\nDo NOT consider a problem valuable simply because the proposed solution can be built.\n\n==================================================\n3. CUSTOMER ANALYSIS\n====================\n\nIdentify the most realistic target customer.\n\nAnalyze:\n\n* Ideal Customer Profile\n* Primary user\n* Buyer\n* Decision-maker when applicable\n* Geographic scope\n* Relevant age range only when reasonably inferable\n* Financial profile\n* Technology familiarity\n* Behavioral characteristics\n* Motivations\n* Pain points\n* Buying triggers\n* Customer acquisition difficulty\n\nFor B2B ideas, also identify:\n\n* Industry\n* Company size\n* Department\n* Buyer\n* Decision-maker\n* End-user\n\nIf demographic or behavioral information cannot be reliably determined, state:\n\n\"Validation required\"\n\nDo not invent demographic information.\n\n==================================================\n4. SOLUTION EVALUATION\n======================\n\nEvaluate whether the proposed solution actually solves the identified problem.\n\nAnalyze:\n\n* Problem-solution fit\n* Customer value\n* Improvement over current alternatives\n* Differentiation\n* Defensibility\n* Technical feasibility\n* Operational feasibility\n* Execution difficulty\n* Main risks\n* Main blockers\n\nA technically impressive product should NOT receive a high score if the underlying problem is weak.\n\n==================================================\n5. BUSINESS POTENTIAL\n=====================\n\nEvaluate the commercial potential of the startup.\n\nAnalyze:\n\n* Willingness to pay\n* Monetization opportunities\n* Recurring revenue potential\n* Customer acquisition difficulty\n* Retention potential\n* Competitive pressure\n* Market accessibility\n* Unit economics considerations\n* Expansion opportunities\n* Scalability\n\nDo not invent:\n\n* Revenue\n* Pricing\n* Market size\n* Customer numbers\n* Conversion rates\n* Financial projections\n\nIf these cannot be determined from the available information, state that validation or external research is required.\n\n==================================================\n6. MARKET RESEARCH\n==================\n\nIf research data is provided, analyze the market using ONLY that research data.\n\nEvaluate:\n\n* Market demand\n* Market growth\n* Relevant trends\n* Market attractiveness\n* Geographic opportunities\n* Industry maturity\n* Market risks\n\nEvery factual market claim must be supported by the provided research.\n\nNever invent statistics.\n\nIf research data is unavailable or insufficient, explicitly state:\n\n\"Insufficient research data\"\n\nDo NOT estimate market size or growth without evidence.\n\n==================================================\n7. FACTS VS ASSUMPTIONS\n=======================\n\nClearly distinguish between:\n\n* Evidence\n* Reasonable inference\n* Assumptions\n* Unknown information\n* Validation requirements\n\nNever fabricate:\n\n* Statistics\n* Competitors\n* Pricing\n* Customer behavior\n* Market size\n* Revenue\n* Demographics\n* Growth rates\n\nWhen information is missing, add it to \"assumptions\", \"research_gaps\", or \"key_questions\".\n\n==================================================\n8. SCORING\n==========\n\nAll scores must be realistic.\n\nDo not give high scores simply to be positive.\n\nScores from 0–100:\n\n80–100 = Strong opportunity\n\n60–79 = Promising but contains meaningful risks or assumptions\n\n40–59 = Significant weaknesses or uncertainty\n\n0–39 = Weak opportunity or major concerns\n\nUse these scores:\n\n* problem_strength\n* market_potential\n* differentiation\n* business_potential\n* feasibility\n* scalability\n* overall\n\nAlso provide:\n\n* problem_score: 1–10\n* overall_idea_score: 1–10\n\nThe problem_score must measure the underlying problem itself, NOT the quality of the solution.\n\n==================================================\n9. FINAL VERDICT\n================\n\nThe final verdict must primarily depend on:\n\n1. Problem importance\n2. Problem frequency\n3. Customer urgency\n4. Existing alternatives\n5. Willingness to pay\n6. Solution fit\n7. Market accessibility\n8. Business viability\n9. Feasibility\n10. Scalability\n\nThe recommendation must be practical and actionable.\n\n==================================================\n10. LANGUAGE\n============\n\nThe output language must match the dominant language of the startup idea.\n\nIf the idea is primarily Arabic:\nReturn all values in Arabic.\n\nIf the idea is primarily English:\nReturn all values in English.\n\nIf another language dominates:\nUse that language.\n\nJSON keys MUST remain exactly as defined below.\n\nKeep technical terms, programming languages, frameworks, and brand names in their original form when appropriate.\n\n==================================================\n11. OUTPUT FORMAT\n=================\n\nRETURN ONLY VALID JSON.\n\nDo NOT return:\n\n* Markdown\n* Code fences\n* Explanations outside JSON\n* Comments\n* Additional fields\n* Multiple JSON objects\n\nUse EXACTLY this structure:\n\n{\n\"idea_name\": \"\",\n\"summary\": \"\",\n\"problem\": \"\",\n\"solution\": \"\",\n\"value_proposition\": \"\",\n\"target_customer\": \"\",\n\n\"scores\": {\n\"problem_strength\": 0,\n\"market_potential\": 0,\n\"differentiation\": 0,\n\"business_potential\": 0,\n\"feasibility\": 0,\n\"scalability\": 0,\n\"overall\": 0\n},\n\n\"strengths\": [],\n\"weaknesses\": [],\n\"assumptions\": [],\n\"key_questions\": [],\n\n\"problem_analysis\": {\n\"intensity_score\": 0,\n\"frequency\": \"\",\n\"urgency\": \"\",\n\"current_alternatives\": \"\",\n\"economic_impact\": \"\",\n\"willingness_to_pay\": \"\",\n\"is_worth_solving\": \"Conditional\",\n\"reasoning\": \"\"\n},\n\n\"problem_score\": 0,\n\"is_worth_solving\": \"Conditional\",\n\n\"problem_validation_summary\": \"\",\n\n\"customer_analysis\": {\n\"customer_profile\": \"\",\n\"primary_user\": \"\",\n\"buyer\": \"\",\n\"decision_maker\": \"\",\n\"age_range_gender\": \"\",\n\"geographic_scope\": \"\",\n\"socioeconomic_profile\": \"\",\n\"knowledge_tech_savviness\": \"\",\n\"behavioral_psychological_profile\": \"\",\n\"b2b_context\": \"\",\n\"customer_acquisition_ease\": \"\"\n},\n\n\"target_customer_profile\": \"\",\n\"customer_demographics\": \"\",\n\"customer_socioeconomic_profile\": \"\",\n\"customer_behavioral_profile\": \"\",\n\"customer_acquisition_ease\": \"\",\n\n\"solution_evaluation\": {\n\"problem_solution_fit\": \"\",\n\"customer_value\": \"\",\n\"differentiation\": \"\",\n\"unfair_advantage\": \"\",\n\"technical_feasibility\": \"\",\n\"operational_feasibility\": \"\",\n\"key_risks\": \"\",\n\"execution_blockers\": \"\"\n},\n\n\"business_analysis\": {\n\"monetization\": \"\",\n\"recurring_revenue\": \"\",\n\"customer_acquisition\": \"\",\n\"retention\": \"\",\n\"competitive_pressure\": \"\",\n\"unit_economics\": \"\",\n\"expansion_potential\": \"\"\n},\n\n\"market_analysis\": {\n\"market\": \"\",\n\"market_summary\": \"\",\n\"demand_signals\": [],\n\"growth\": \"\",\n\"trends\": [],\n\"opportunities\": [],\n\"geographic_opportunities\": [],\n\"industry_maturity\": \"\",\n\"market_risks\": [],\n\"research_gaps\": [],\n\"research_available\": false\n},\n\n\"market_scores\": {\n\"demand\": 0,\n\"growth\": 0,\n\"attractiveness\": 0,\n\"overall\": 0\n},\n\n\"overall_idea_score\": 0,\n\n\"final_recommendation\": \"\",\n\n\"verdict\": \"\",\n\"verdict_reason\": \"\"\n}\n\n==================================================\n12. FIELD RULES\n===============\n\n\"is_worth_solving\" must be exactly:\n\n\"Yes\"\n\"No\"\n\"Conditional\"\n\n\"problem_analysis.is_worth_solving\" must exactly match \"is_worth_solving\".\n\n\"customer_acquisition_ease\" must be:\n\n\"High - explanation\"\n\n\"Medium - explanation\"\n\nor\n\n\"Low - explanation\"\n\n\"problem_analysis.intensity_score\" must be between 0 and 100.\n\n\"problem_score\" must be between 1 and 10.\n\n\"overall_idea_score\" must be between 1 and 10.\n\nAll values inside \"scores\" must be between 0 and 100.\n\nAll values inside \"market_scores\" must be between 0 and 100.\n\nArrays must contain concise strings.\n\n\"final_recommendation\" must contain specific and actionable next steps.\n\n\"problem_validation_summary\" must focus on whether the underlying problem deserves to be solved.\n\n\"solution_evaluation\" must focus on how effectively the solution addresses the problem.\n\n\"market_analysis\" must focus on the market and must not repeat the entire startup analysis.\n\nIf research data is unavailable:\n\n* Set \"research_available\" to false.\n* Do not invent market facts.\n* Clearly identify \"research_gaps\".\n\nIf evidence is insufficient to make a confident decision, use \"Conditional\".\n\n==================================================\n13. FINAL QUALITY CHECK\n=======================\n\nBefore returning the JSON, verify:\n\n1. The JSON is valid.\n2. There is only ONE JSON object.\n3. No Markdown exists outside the JSON.\n4. No unsupported statistics were invented.\n5. No competitors were invented.\n6. Scores are within their required ranges.\n7. \"is_worth_solving\" values match.\n8. The problem was evaluated independently from the solution.\n9. Market claims only use provided research data.\n10. The output language is consistent.\n11. Every required field exists.\n12. No additional fields were added.\n"
->>>>>>> 18c702b (new updater)
+          "systemMessage": "=You are an expert Startup Idea Evaluator, Market Researcher, and Business Analyst.\n\nYour task is to objectively, critically, and practically evaluate a submitted startup or project idea.\n\nYour goal is NOT to determine whether the idea sounds exciting, innovative, or technically impressive.\n\nYour goal is to determine:\n\n- Whether there is a meaningful problem.\n- Whether the problem is worth solving.\n- Who experiences the problem.\n- Whether the proposed solution actually addresses the problem.\n- Whether there is evidence of market demand.\n- Whether customers are likely to pay.\n- Whether the business can realistically compete, grow, and scale.\n- Which assumptions and uncertainties still require validation.\n\nIMPORTANT PRINCIPLES\n\n1. Never automatically give positive scores.\n2. Judge the problem independently from the solution.\n3. Do not reward technical complexity or impressive technology by itself.\n4. Never invent missing information.\n5. Clearly distinguish evidence, inference, assumptions, and unknowns.\n6. When evidence is insufficient, use \"Conditional\" rather than making unsupported conclusions.\n7. Never fabricate statistics, competitors, pricing, market size, customer numbers, demographics, growth rates, or financial projections.\n8. Use external research when available and clearly distinguish researched facts from assumptions.\n\n==================================================\n1. IDEA UNDERSTANDING\n==================================================\n\nFirst understand the submitted idea.\n\nAnalyze:\n\n- Idea clarity\n- Problem being solved\n- Proposed solution\n- Value proposition\n- Target customer\n- Current alternatives\n- Main differentiation\n- Business model, if provided\n\nIf important information is missing, explicitly identify it as an assumption, unknown, or validation requirement.\n\nNever fill missing information with invented details.\n\n==================================================\n2. PROBLEM VALIDATION\n==================================================\n\nEvaluate the underlying problem independently from the proposed solution.\n\nAnalyze:\n\n- Problem intensity\n- Problem frequency\n- Urgency\n- Financial impact\n- Time impact\n- Frustration, risk, or loss caused by the problem\n- Existing alternatives and workarounds\n- Customer willingness to pay\n- Commercial significance\n\nClassify the problem as:\n\n\"Yes\" = The problem appears meaningful and commercially relevant.\n\n\"No\" = The problem appears weak, infrequent, low-impact, or unlikely to generate meaningful demand.\n\n\"Conditional\" = The problem could be valuable, but important assumptions require validation.\n\nIMPORTANT:\n\nDo not consider a problem valuable simply because the proposed solution is technically feasible or impressive.\n\n==================================================\n3. CUSTOMER ANALYSIS\n==================================================\n\nIdentify the most realistic target customer.\n\nAnalyze:\n\n- Ideal Customer Profile\n- Primary user\n- Buyer\n- Decision-maker, when applicable\n- Geographic scope\n- Age range and gender only when reasonably supported\n- Socioeconomic or financial profile\n- Technology familiarity\n- Behavioral characteristics\n- Psychological characteristics\n- Motivations\n- Pain points\n- Buying triggers\n- Customer acquisition difficulty\n\nFor B2B ideas, also identify:\n\n- Industry\n- Company size\n- Department\n- Buyer\n- Decision-maker\n- End-user\n\nIf demographic or behavioral information cannot be reliably determined, write:\n\n\"Validation required\"\n\nDo not invent demographic information.\n\n==================================================\n4. SOLUTION EVALUATION\n==================================================\n\nEvaluate whether the proposed solution actually solves the identified problem.\n\nAnalyze:\n\n- Problem-solution fit\n- Customer value\n- Improvement over current alternatives\n- Differentiation\n- Defensibility\n- Unfair advantage\n- Technical feasibility\n- Operational feasibility\n- Execution difficulty\n- Main risks\n- Main blockers\n\nA technically impressive solution must NOT receive a high score if the underlying problem is weak.\n\n==================================================\n5. BUSINESS POTENTIAL\n==================================================\n\nEvaluate the commercial potential of the idea.\n\nAnalyze:\n\n- Willingness to pay\n- Monetization opportunities\n- Recurring revenue potential\n- Customer acquisition difficulty\n- Retention potential\n- Competitive pressure\n- Market accessibility\n- Unit economics considerations\n- Expansion opportunities\n- Scalability\n\nDo not invent:\n\n- Revenue\n- Pricing\n- Market size\n- Customer numbers\n- Conversion rates\n- Financial projections\n\nIf these cannot be determined from available evidence, state that validation or external research is required.\n\n==================================================\n6. MARKET RESEARCH\n==================================================\n\nYou MUST use the available Search in Tavily tool to research the latest relevant market data and trends before producing the final evaluation.\n\nResearch should focus specifically on the submitted idea, including when relevant:\n\n- Market demand\n- Search or interest trends\n- Industry trends\n- Relevant market growth\n- Competitors\n- Existing solutions\n- Customer pain points\n- Geographic opportunities\n- Industry maturity\n- Market risks\n\nIMPORTANT:\n\nUse only information supported by the research results.\n\nDo not invent statistics or market facts.\n\nEvery factual market claim in the final analysis must be based on available research evidence.\n\nIf research is unavailable, inaccessible, or insufficient:\n\n- Set \"research_available\" to false.\n- Set relevant research fields to indicate insufficient data.\n- Add the missing information to \"research_gaps\".\n- Do not estimate unsupported market size or growth.\n\nDo not confuse popularity with commercial opportunity.\n\nA trend may indicate attention without proving willingness to pay.\n\n==================================================\n7. FACTS VS ASSUMPTIONS\n==================================================\n\nClearly distinguish between:\n\n- Evidence\n- Reasonable inference\n- Assumptions\n- Unknown information\n- Validation requirements\n\nNever fabricate:\n\n- Statistics\n- Competitors\n- Pricing\n- Customer behavior\n- Market size\n- Revenue\n- Demographics\n- Growth rates\n\nWhen information is missing, record it in:\n\n- \"assumptions\"\n- \"research_gaps\"\n- \"key_questions\"\n\n==================================================\n8. SCORING\n==================================================\n\nAll scores must be realistic and evidence-based.\n\nDo not give high scores simply to be positive.\n\nUse the following 0–100 scale:\n\n80–100 = Strong opportunity\n\n60–79 = Promising but contains meaningful risks or assumptions\n\n40–59 = Significant weaknesses or uncertainty\n\n0–39 = Weak opportunity or major concerns\n\nRequired scores:\n\n- problem_strength\n- market_potential\n- differentiation\n- business_potential\n- feasibility\n- scalability\n- overall\n\nAlso provide:\n\n- problem_score: 1–10\n- overall_idea_score: 1–10\n\nIMPORTANT:\n\n\"problem_score\" measures the underlying problem itself, NOT the quality of the solution.\n\n==================================================\n9. FINAL VERDICT\n==================================================\n\nThe final verdict must primarily depend on:\n\n1. Problem importance\n2. Problem frequency\n3. Customer urgency\n4. Existing alternatives\n5. Willingness to pay\n6. Solution fit\n7. Market accessibility\n8. Business viability\n9. Feasibility\n10. Scalability\n\nThe recommendation must be practical and actionable.\n\n==================================================\n10. LANGUAGE\n==================================================\n\nThe output language must match the dominant language of the startup idea.\n\nIf the idea is primarily Arabic:\nReturn all values in Arabic.\n\nIf the idea is primarily English:\nReturn all values in English.\n\nIf another language dominates:\nUse that language.\n\nJSON keys MUST remain exactly as defined below.\n\nKeep technical terms, programming languages, frameworks, products, companies, and brand names in their original form when appropriate.\n\n==================================================\n11. OUTPUT FORMAT\n==================================================\n\nRETURN ONLY VALID JSON.\n\nDo NOT return:\n\n- Markdown\n- Code fences\n- Explanations outside JSON\n- Comments\n- Additional fields\n- Multiple JSON objects\n\nUse EXACTLY this structure:\n\n{\n  \"idea_name\": \"\",\n  \"summary\": \"\",\n  \"problem\": \"\",\n  \"solution\": \"\",\n  \"value_proposition\": \"\",\n  \"target_customer\": \"\",\n\n  \"scores\": {\n    \"problem_strength\": 0,\n    \"market_potential\": 0,\n    \"differentiation\": 0,\n    \"business_potential\": 0,\n    \"feasibility\": 0,\n    \"scalability\": 0,\n    \"overall\": 0\n  },\n\n  \"strengths\": [],\n  \"weaknesses\": [],\n  \"assumptions\": [],\n  \"key_questions\": [],\n\n  \"problem_analysis\": {\n    \"intensity_score\": 0,\n    \"frequency\": \"\",\n    \"urgency\": \"\",\n    \"current_alternatives\": \"\",\n    \"economic_impact\": \"\",\n    \"willingness_to_pay\": \"\",\n    \"is_worth_solving\": \"Conditional\",\n    \"reasoning\": \"\"\n  },\n\n  \"problem_score\": 0,\n  \"is_worth_solving\": \"Conditional\",\n\n  \"problem_validation_summary\": \"\",\n\n  \"customer_analysis\": {\n    \"customer_profile\": \"\",\n    \"primary_user\": \"\",\n    \"buyer\": \"\",\n    \"decision_maker\": \"\",\n    \"age_range_gender\": \"\",\n    \"geographic_scope\": \"\",\n    \"socioeconomic_profile\": \"\",\n    \"knowledge_tech_savviness\": \"\",\n    \"behavioral_psychological_profile\": \"\",\n    \"b2b_context\": \"\",\n    \"customer_acquisition_ease\": \"\"\n  },\n\n  \"target_customer_profile\": \"\",\n  \"customer_demographics\": \"\",\n  \"customer_socioeconomic_profile\": \"\",\n  \"customer_behavioral_profile\": \"\",\n  \"customer_acquisition_ease\": \"\",\n\n  \"solution_evaluation\": {\n    \"problem_solution_fit\": \"\",\n    \"customer_value\": \"\",\n    \"differentiation\": \"\",\n    \"unfair_advantage\": \"\",\n    \"technical_feasibility\": \"\",\n    \"operational_feasibility\": \"\",\n    \"key_risks\": \"\",\n    \"execution_blockers\": \"\"\n  },\n\n  \"business_analysis\": {\n    \"monetization\": \"\",\n    \"recurring_revenue\": \"\",\n    \"customer_acquisition\": \"\",\n    \"retention\": \"\",\n    \"competitive_pressure\": \"\",\n    \"unit_economics\": \"\",\n    \"expansion_potential\": \"\"\n  },\n\n  \"market_analysis\": {\n    \"market\": \"\",\n    \"market_summary\": \"\",\n    \"demand_signals\": [],\n    \"growth\": \"\",\n    \"trends\": [],\n    \"opportunities\": [],\n    \"geographic_opportunities\": [],\n    \"industry_maturity\": \"\",\n    \"market_risks\": [],\n    \"research_gaps\": [],\n    \"research_available\": false\n  },\n\n  \"market_scores\": {\n    \"demand\": 0,\n    \"growth\": 0,\n    \"attractiveness\": 0,\n    \"overall\": 0\n  },\n\n  \"overall_idea_score\": 0,\n\n  \"final_recommendation\": \"\",\n\n  \"verdict\": \"\",\n  \"verdict_reason\": \"\"\n}\n\n==================================================\n12. FIELD RULES\n==================================================\n\n\"is_worth_solving\" MUST be exactly one of:\n\n\"Yes\"\n\"No\"\n\"Conditional\"\n\n\"problem_analysis.is_worth_solving\" MUST exactly match the top-level \"is_worth_solving\".\n\n\"customer_acquisition_ease\" MUST use exactly one of these formats:\n\n\"High - explanation\"\n\n\"Medium - explanation\"\n\n\"Low - explanation\"\n\n\"problem_analysis.intensity_score\" must be between 0 and 100.\n\n\"problem_score\" must be between 1 and 10.\n\n\"overall_idea_score\" must be between 1 and 10.\n\nAll values inside \"scores\" must be between 0 and 100.\n\nAll values inside \"market_scores\" must be between 0 and 100.\n\nArrays must contain concise strings.\n\n\"final_recommendation\" must contain specific, practical, and actionable next steps.\n\n\"problem_validation_summary\" must focus specifically on whether the underlying problem deserves to be solved.\n\n\"solution_evaluation\" must focus specifically on how effectively the proposed solution addresses the problem.\n\n\"market_analysis\" must focus specifically on the market and must not repeat the entire startup analysis.\n\n==================================================\n13. RESEARCH RULES\n==================================================\n\nWhen using external research:\n\n1. Prioritize recent and relevant sources.\n2. Prefer primary or highly reliable sources when available.\n3. Cross-check important market claims when possible.\n4. Do not treat a single weak signal as proof of market demand.\n5. Distinguish between:\n   - Search interest\n   - Market demand\n   - User engagement\n   - Willingness to pay\n   - Actual commercial validation\n6. Do not claim that a market is growing solely because a topic is trending.\n7. Do not claim product-market fit based only on search volume or social media activity.\n8. If sources disagree, explicitly acknowledge the uncertainty.\n9. If evidence is weak, use \"Conditional\".\n\n==================================================\n14. FINAL QUALITY CHECK\n==================================================\n\nBefore returning the JSON, verify all of the following:\n\n1. The JSON is valid.\n2. There is exactly ONE JSON object.\n3. No Markdown exists outside the JSON.\n4. No unsupported statistics were invented.\n5. No competitors were invented.\n6. No pricing was invented without evidence.\n7. No market size was invented without evidence.\n8. No customer demographics were invented without evidence.\n9. All scores are within their required ranges.\n10. \"is_worth_solving\" values match exactly.\n11. The problem was evaluated independently from the solution.\n12. Market claims are supported by available research.\n13. Missing information is clearly identified.\n14. The output language matches the dominant language of the idea.\n15. Every required field exists.\n16. No additional fields were added.\n17. \"final_recommendation\" contains actionable next steps.\n18. If research is insufficient, \"research_available\" is false.\n19. The final verdict is based on evidence rather than optimism.\n20. Return ONLY the JSON object."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        208,
+        0,
         0
       ],
       "id": "3cccf084-1785-4a88-ac06-8365d070151f",
@@ -43,7 +41,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        80,
+        -128,
         208
       ],
       "id": "a42846e2-f745-4056-961a-9bb27e47c5ac",
@@ -56,11 +54,14 @@
       }
     },
     {
-      "parameters": {},
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('When chat message received').item.json.chatInput }}"
+      },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        224,
+        16,
         208
       ],
       "id": "2cc19a3e-477a-41e0-bd3c-a9eefcb04415",
@@ -68,16 +69,12 @@
     },
     {
       "parameters": {
-<<<<<<< HEAD
-        "jsCode": "const results = [];\n\nfor (const item of $input.all()) {\n  // 1. جلب المخرجات من العقدة السابقة (AI Agent)\n  const rawOutput = item.json.output || \"\";\n  \n  // 2. تنظيف النص تحسباً لوجود علامات Markdown\n  const jsonString = rawOutput.replace(/```json/gi, '').replace(/```/g, '').trim();\n  \n  let data = {};\n  try {\n    data = JSON.parse(jsonString);\n  } catch (error) {\n    // في حال فشل التحليل، يتم إرجاع رسالة خطأ لمعرفة السبب\n    data = { error: \"Failed to parse JSON\", rawOutput };\n  }\n\n  // 3. دالة مساعدة لتصنيف التقييمات (Labels) بناءً على الرقم\n  const getScoreLabel = (value) => {\n    if (value >= 85) return \"Excellent\";\n    if (value >= 70) return \"Good\";\n    if (value >= 50) return \"Moderate\";\n    return \"Weak\";\n  };\n\n  // 4. بناء الهيكلية النهائية\n  results.push({\n    json: {\n      ideaName: data.idea_name || \"Startup Idea\",\n      title: \"Idea Analysis\",\n      summary: data.summary || \"\",\n      problem: data.problem || \"\",\n      solution: data.solution || \"\",\n      valueProposition: data.value_proposition || \"\",\n      targetCustomer: data.target_customer || \"\",\n      \n      // تحويل كائن التقييمات إلى مصفوفة (Array) مع تحسين شكل الأسماء\n      scores: data.scores ? Object.entries(data.scores).map(([key, value]) => ({\n        // تحويل 'market_potential' إلى 'Market Potential'\n        name: key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),\n        value: value,\n        label: getScoreLabel(value)\n      })) : [],\n      \n      strengths: data.strengths || [],\n      weaknesses: data.weaknesses || [],\n      assumptions: data.assumptions || [],\n      questions: data.key_questions || [],\n      verdict: data.verdict || \"\",\n      verdictReason: data.verdict_reason || \"\"\n    }\n  });\n}\n\nreturn results;"
-=======
         "jsCode": "const results = [];\n\nfor (const item of $input.all()) {\n  // 1. جلب مخرجات AI Agent\n  const rawOutput = item.json.output || \"\";\n\n  // 2. تنظيف Markdown إن وُجد\n  const jsonString = rawOutput\n    .replace(/```json/gi, \"\")\n    .replace(/```/g, \"\")\n    .trim();\n\n  let data = {};\n\n  try {\n    data = JSON.parse(jsonString);\n  } catch (error) {\n    results.push({\n      json: {\n        error: \"Failed to parse JSON\",\n        errorMessage: error.message,\n        rawOutput: rawOutput\n      }\n    });\n\n    continue;\n  }\n\n  // 3. تصنيف الـ Scores\n  const getScoreLabel = (value) => {\n    if (value >= 85) return \"Excellent\";\n    if (value >= 70) return \"Good\";\n    if (value >= 50) return \"Moderate\";\n    return \"Weak\";\n  };\n\n  // 4. تحويل scores إلى Array\n  const scores = data.scores\n    ? Object.entries(data.scores).map(([key, value]) => ({\n        name: key\n          .split(\"_\")\n          .map(word => word.charAt(0).toUpperCase() + word.slice(1))\n          .join(\" \"),\n        value: Number(value),\n        label: getScoreLabel(Number(value))\n      }))\n    : [];\n\n  // 5. بناء الـ JSON النهائي\n  results.push({\n    json: {\n      // Basic Information\n      ideaName: data.idea_name || \"Startup Idea\",\n      title: \"Idea Analysis\",\n      summary: data.summary || \"\",\n\n      // Problem & Solution\n      problem: data.problem || \"\",\n      solution: data.solution || \"\",\n      valueProposition: data.value_proposition || \"\",\n      targetCustomer: data.target_customer || \"\",\n\n      // Overall Scores\n      scores: scores,\n\n      // Problem Validation\n      problemAnalysis: {\n        intensityScore: Number(\n          data.problem_analysis?.intensity_score || 0\n        ),\n        frequency: data.problem_analysis?.frequency || \"\",\n        currentAlternatives:\n          data.problem_analysis?.current_alternatives || \"\",\n        willingnessToPay:\n          data.problem_analysis?.willingness_to_pay || \"\",\n        marketPotential:\n          data.problem_analysis?.market_potential || \"\",\n        isWorthSolving:\n          data.problem_analysis?.is_worth_solving || \"\",\n        reasoning:\n          data.problem_analysis?.reasoning || \"\"\n      },\n\n      problemScore: Number(data.problem_score || 0),\n      isWorthSolving: data.is_worth_solving || \"\",\n      problemValidationSummary:\n        data.problem_validation_summary || \"\",\n\n      // Target Customer Analysis\n      customerAnalysis: {\n        customerProfile:\n          data.customer_analysis?.customer_profile || \"\",\n        ageRangeGender:\n          data.customer_analysis?.age_range_gender || \"\",\n        geographicScope:\n          data.customer_analysis?.geographic_scope || \"\",\n        socioeconomicProfile:\n          data.customer_analysis?.socioeconomic_profile || \"\",\n        knowledgeTechSavviness:\n          data.customer_analysis?.knowledge_tech_savviness || \"\",\n        behavioralPsychologicalProfile:\n          data.customer_analysis?.behavioral_psychological_profile || \"\",\n        b2bContext:\n          data.customer_analysis?.b2b_context || \"\",\n        customerAcquisitionEase:\n          data.customer_analysis?.customer_acquisition_ease || \"\"\n      },\n\n      // Customer Analysis - Simplified Fields\n      targetCustomerProfile:\n        data.target_customer_profile || \"\",\n\n      customerDemographics:\n        data.customer_demographics || \"\",\n\n      customerSocioeconomicProfile:\n        data.customer_socioeconomic_profile || \"\",\n\n      customerBehavioralProfile:\n        data.customer_behavioral_profile || \"\",\n\n      customerAcquisitionEase:\n        data.customer_acquisition_ease || \"\",\n\n      // Solution Evaluation\n      solutionEvaluation:\n        data.solution_evaluation || \"\",\n\n      // General Analysis\n      strengths: Array.isArray(data.strengths)\n        ? data.strengths\n        : [],\n\n      weaknesses: Array.isArray(data.weaknesses)\n        ? data.weaknesses\n        : [],\n\n      assumptions: Array.isArray(data.assumptions)\n        ? data.assumptions\n        : [],\n\n      questions: Array.isArray(data.key_questions)\n        ? data.key_questions\n        : [],\n\n      // Final Evaluation\n      overallIdeaScore:\n        Number(data.overall_idea_score || 0),\n\n      finalRecommendation:\n        data.final_recommendation || \"\",\n\n      verdict:\n        data.verdict || \"\",\n\n      verdictReason:\n        data.verdict_reason || \"\"\n    }\n  });\n}\n\nreturn results;"
->>>>>>> 18c702b (new updater)
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        560,
+        352,
         0
       ],
       "id": "6ca6749b-2586-455f-b2f3-b1e2a228eb13",
@@ -185,7 +182,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        944,
+        736,
         0
       ],
       "id": "ca9bba95-85bf-4c94-be55-15a56c9583a1",
@@ -217,10 +214,6 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-<<<<<<< HEAD
-            "idea name": "={{ $json.ideaName }}",
-=======
->>>>>>> 18c702b (new updater)
             "summary": "={{ $json.summary }}",
             "problem": "={{ $json.problem }}",
             "solution": "={{ $json.solution }}",
@@ -231,30 +224,18 @@
             "assumptions": "={{ $('Code in JavaScript').item.json.assumptions.map(item => '• ' + item).join('\\n') }}",
             "key questions": "={{ $('Code in JavaScript').item.json.questions.map(item => '• ' + item).join('\\n') }}",
             "verdict": "={{ $json.verdict }}",
-<<<<<<< HEAD
-            "verdict reason": "={{ $json.verdictReason }}"
-=======
             "verdict reason": "={{ $json.verdictReason }}",
             "Idea name": "={{ $json.ideaName }}"
->>>>>>> 18c702b (new updater)
           },
           "matchingColumns": [],
           "schema": [
             {
-<<<<<<< HEAD
-              "id": "idea name",
-              "displayName": "idea name",
-=======
               "id": "ID",
               "displayName": "ID",
->>>>>>> 18c702b (new updater)
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-<<<<<<< HEAD
-              "canBeUsedToMatch": true
-=======
               "canBeUsedToMatch": true,
               "removed": true
             },
@@ -267,7 +248,6 @@
               "type": "string",
               "canBeUsedToMatch": true,
               "removed": false
->>>>>>> 18c702b (new updater)
             },
             {
               "id": "summary",
@@ -377,7 +357,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        768,
+        560,
         0
       ],
       "id": "726cc1df-eed1-414a-b825-fbe9931dc8a2",
@@ -401,7 +381,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        1152,
+        944,
         0
       ],
       "id": "0fec2f85-73fb-4fc6-979a-6e85bc1296b4",
@@ -413,8 +393,6 @@
           "name": "Gmail account"
         }
       }
-<<<<<<< HEAD
-=======
     },
     {
       "parameters": {
@@ -557,7 +535,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        768,
+        560,
         160
       ],
       "id": "4db105ba-3a8b-44b0-80bf-10457843e118",
@@ -754,7 +732,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        768,
+        560,
         304
       ],
       "id": "a084e1b2-22e2-4ba7-ad6e-e7f8bd6ee3d5",
@@ -778,7 +756,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        944,
+        736,
         160
       ],
       "id": "697f9cbd-e28c-4d12-bf57-1e1149584652",
@@ -803,7 +781,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        944,
+        736,
         304
       ],
       "id": "31f7f65a-9499-4bc7-b1c3-c1f2bb40574c",
@@ -813,38 +791,6 @@
         "gmailOAuth2": {
           "id": "9NcBOjKo4wAbWWGE",
           "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.4,
-      "position": [
-        -16,
-        384
-      ],
-      "id": "bb1dfd4a-14ef-4bd4-889c-f978332ee3d8",
-      "name": "HTTP Request"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
-      "typeVersion": 1,
-      "position": [
-        336,
-        208
-      ],
-      "id": "872f128a-63c5-429e-ba1e-a063dac2238e",
-      "name": "Search in Tavily",
-      "credentials": {
-        "tavilyApi": {
-          "id": "rrwNOrE7278yTESS",
-          "name": "Tavily account"
         }
       }
     },
@@ -860,27 +806,25 @@
         },
         "sheetName": {
           "__rl": true,
-          "value": 374916807,
+          "value": 1357155341,
           "mode": "list",
-          "cachedResultName": "Customer analysis",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1p1VJoErQblmkpXVXxi7T6FtcSBQJ2JZiLGJ0JPsuqKg/edit#gid=374916807"
+          "cachedResultName": "Market analysis",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1p1VJoErQblmkpXVXxi7T6FtcSBQJ2JZiLGJ0JPsuqKg/edit#gid=1357155341"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "customerProfile": "={{ $json.customerAnalysis.customerProfile }}",
-            "ageRangeGender": "={{ $json.customerAnalysis.ageRangeGender }}",
-            "geographicScope": "={{ $json.customerAnalysis.geographicScope }}",
-            "socioeconomicProfile": "={{ $json.customerAnalysis.socioeconomicProfile }}",
-            "knowledgeTechSavviness": "={{ $json.customerAnalysis.knowledgeTechSavviness }}",
-            "behavioralPsychologicalProfile": "={{ $json.customerAnalysis.behavioralPsychologicalProfile }}",
-            "b2bContext": "={{ $json.customerAnalysis.b2bContext }}",
-            "customerAcquisitionEase": "={{ $json.customerAnalysis.customerAcquisitionEase }}",
-            "targetCustomerProfile": "={{ $json.targetCustomerProfile }}",
-            "customerDemographics": "={{ $json.customerDemographics }}",
-            "customerSocioeconomicProfile": "={{ $json.customerSocioeconomicProfile }}",
-            "customerBehavioralProfile": "={{ $json.customerBehavioralProfile }}",
-            "SolutionEvaluation": "={{ $json.solutionEvaluation }}"
+            "geographic_opportunities": "={{ $json.customerAnalysis.geographicScope }}",
+            "market": "={{ $json.customerAnalysis.b2bContext }}",
+            "market_summary": "={{ $json.customerAnalysis.customerProfile }}",
+            "demand_signals": "={{ $json.customerAnalysis.behavioralPsychologicalProfile }}",
+            "growth": "={{ $json.solutionEvaluation.problem_solution_fit }}",
+            "trends": "={{ $json.customerAnalysis.knowledgeTechSavviness }}",
+            "opportunities": "={{ $json.solutionEvaluation.differentiation }}",
+            "industry_maturity": "={{ $json.solutionEvaluation.technical_feasibility }}",
+            "market_risks": "={{ $json.solutionEvaluation.key_risks }}",
+            "research_gaps": "={{ $json.solutionEvaluation.execution_blockers }}",
+            "research_available": "={{ $json.solutionEvaluation.operational_feasibility }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -895,8 +839,8 @@
               "removed": true
             },
             {
-              "id": "customerProfile",
-              "displayName": "customerProfile",
+              "id": "market",
+              "displayName": "market",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -905,8 +849,8 @@
               "removed": false
             },
             {
-              "id": "ageRangeGender",
-              "displayName": "ageRangeGender",
+              "id": "market_summary",
+              "displayName": "market_summary",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -915,8 +859,8 @@
               "removed": false
             },
             {
-              "id": "geographicScope",
-              "displayName": "geographicScope",
+              "id": "demand_signals",
+              "displayName": "demand_signals",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -925,8 +869,8 @@
               "removed": false
             },
             {
-              "id": "socioeconomicProfile",
-              "displayName": "socioeconomicProfile",
+              "id": "growth",
+              "displayName": "growth",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -935,8 +879,8 @@
               "removed": false
             },
             {
-              "id": "knowledgeTechSavviness",
-              "displayName": "knowledgeTechSavviness",
+              "id": "trends",
+              "displayName": "trends",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -945,8 +889,8 @@
               "removed": false
             },
             {
-              "id": "behavioralPsychologicalProfile",
-              "displayName": "behavioralPsychologicalProfile",
+              "id": "opportunities",
+              "displayName": "opportunities",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -955,8 +899,8 @@
               "removed": false
             },
             {
-              "id": "b2bContext",
-              "displayName": "b2bContext",
+              "id": "geographic_opportunities",
+              "displayName": "geographic_opportunities",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -965,8 +909,8 @@
               "removed": false
             },
             {
-              "id": "customerAcquisitionEase",
-              "displayName": "customerAcquisitionEase",
+              "id": "industry_maturity",
+              "displayName": "industry_maturity",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -975,8 +919,8 @@
               "removed": false
             },
             {
-              "id": "targetCustomerProfile",
-              "displayName": "targetCustomerProfile",
+              "id": "market_risks",
+              "displayName": "market_risks",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -985,8 +929,8 @@
               "removed": false
             },
             {
-              "id": "customerDemographics",
-              "displayName": "customerDemographics",
+              "id": "research_gaps",
+              "displayName": "research_gaps",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -995,28 +939,8 @@
               "removed": false
             },
             {
-              "id": "customerSocioeconomicProfile",
-              "displayName": "customerSocioeconomicProfile",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "customerBehavioralProfile",
-              "displayName": "customerBehavioralProfile",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "SolutionEvaluation",
-              "displayName": "SolutionEvaluation",
+              "id": "research_available",
+              "displayName": "research_available",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -1033,7 +957,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        768,
+        560,
         464
       ],
       "id": "e445b033-78bb-43fa-8f63-5c330dca8d88",
@@ -1049,7 +973,7 @@
       "parameters": {
         "sendTo": "moathhazeem661@gmail.com",
         "subject": "=تحليل العميل : {{ $('Code in JavaScript').item.json.ideaName }}",
-        "message": "=<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Customer Analysis</title>\n</head>\n\n<body style=\"margin:0; padding:40px 15px; background-color:#f0f3f8; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; color:#1e293b;\">\n\n  <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"max-width:650px; margin:0 auto; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);\">\n\n    <tr>\n      <td style=\"padding:32px 35px; background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color:#ffffff;\">\n        <span style=\"display:inline-block; padding:4px 12px; background-color:rgba(255,255,255,0.2); border-radius:20px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;\">\n          Module 02\n        </span>\n        <h1 style=\"margin:0; font-size:26px; font-weight:700; line-height:34px; letter-spacing:-0.5px;\">\n          Customer Analysis\n        </h1>\n        <p style=\"margin:6px 0 0; font-size:14px; opacity:0.9; line-height:20px;\">\n          Target persona, demographics, and acquisition strategy\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:25px 35px 20px;\">\n        <div style=\"padding:20px; background-color:#f0f9ff; border:1px solid #bae6fd; border-radius:12px;\">\n          <h2 style=\"margin:0 0 8px; font-size:14px; font-weight:700; text-transform:uppercase; color:#0369a1; letter-spacing:0.5px;\">\n            Ideal Customer Profile\n          </h2>\n          <p style=\"margin:0; font-size:15px; line-height:24px; color:#0c4a6e; font-weight:500;\">\n            {{ $json.targetCustomerProfile || $json.targetCustomer }}\n          </p>\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Demographics & Economics\n        </h2>\n\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:separate; border-spacing:0 8px;\">\n          \n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; width:40%; font-size:14px; font-weight:600; color:#334155;\">\n              Demographics\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:#475569;\">\n              {{ $json.customerDemographics }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; font-weight:600; color:#334155;\">\n              Socioeconomic\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; line-height:22px; color:#475569;\">\n              {{ $json.customerSocioeconomicProfile }}\n            </td>\n          </tr>\n\n        </table>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Behavioral Profile\n        </h2>\n        <p style=\"margin:0; padding:16px; background-color:#f8fafc; border-radius:12px; border:1px solid #e2e8f0; font-size:14px; line-height:24px; color:#475569;\">\n          {{ $json.customerBehavioralProfile }}\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 30px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Customer Acquisition\n        </h2>\n        <div style=\"padding:18px 20px; background-color:#fdf4ff; border-left:4px solid #d946ef; border-radius:0 12px 12px 0; font-size:14px; line-height:24px; color:#701a75;\">\n          {{ $json.customerAcquisitionEase }}\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:20px 35px; background-color:#f8fafc; border-top:1px solid #f1f5f9; text-align:center;\">\n        <p style=\"margin:0; font-size:12px; font-weight:500; color:#94a3b8; letter-spacing:0.5px;\">\n          STARTUP IDEA EVALUATION REPORT\n        </p>\n      </td>\n    </tr>\n\n  </table>\n\n</body>\n</html>",
+        "message": "=<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Customer Analysis</title>\n</head>\n\n<body style=\"margin:0; padding:40px 15px; background-color:#f0f3f8; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; color:#1e293b;\">\n\n  <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"max-width:650px; margin:0 auto; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);\">\n\n    <tr>\n      <td style=\"padding:32px 35px; background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color:#ffffff;\">\n        <span style=\"display:inline-block; padding:4px 12px; background-color:rgba(255,255,255,0.2); border-radius:20px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;\">\n          Module 02\n        </span>\n        <h1 style=\"margin:0; font-size:26px; font-weight:700; line-height:34px; letter-spacing:-0.5px;\">\n          Customer Analysis\n        </h1>\n        <p style=\"margin:6px 0 0; font-size:14px; opacity:0.9; line-height:20px;\">\n          Target persona, demographics, and acquisition strategy\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:25px 35px 20px;\">\n        <div style=\"padding:20px; background-color:#f0f9ff; border:1px solid #bae6fd; border-radius:12px;\">\n          <h2 style=\"margin:0 0 8px; font-size:14px; font-weight:700; text-transform:uppercase; color:#0369a1; letter-spacing:0.5px;\">\n            Ideal Customer Profile\n          </h2>\n          <p style=\"margin:0; font-size:15px; line-height:24px; color:#0c4a6e; font-weight:500;\">\n            {{ $('Code in JavaScript').item.json.targetCustomerProfile || $('Code in JavaScript').item.json.targetCustomer || $('Code in JavaScript').item.json.customerAnalysis.customerProfile }}\n          </p>\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Demographics & Economics\n        </h2>\n\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:separate; border-spacing:0 8px;\">\n          \n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; width:40%; font-size:14px; font-weight:600; color:#334155;\">\n              Demographics\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.customerDemographics || $('Code in JavaScript').item.json.customerAnalysis.ageRangeGender }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; font-weight:600; color:#334155;\">\n              Socioeconomic\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; line-height:22px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.customerSocioeconomicProfile || $('Code in JavaScript').item.json.customerAnalysis.socioeconomicProfile }}\n            </td>\n          </tr>\n\n        </table>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Behavioral Profile\n        </h2>\n        <p style=\"margin:0; padding:16px; background-color:#f8fafc; border-radius:12px; border:1px solid #e2e8f0; font-size:14px; line-height:24px; color:#475569;\">\n          {{ $('Code in JavaScript').item.json.customerBehavioralProfile || $('Code in JavaScript').item.json.customerAnalysis.behavioralPsychologicalProfile }}\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 30px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Customer Acquisition\n        </h2>\n        <div style=\"padding:18px 20px; background-color:#fdf4ff; border-left:4px solid #d946ef; border-radius:0 12px 12px 0; font-size:14px; line-height:24px; color:#701a75;\">\n          {{ $('Code in JavaScript').item.json.customerAcquisitionEase || $('Code in JavaScript').item.json.customerAnalysis.customerAcquisitionEase }}\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:20px 35px; background-color:#f8fafc; border-top:1px solid #f1f5f9; text-align:center;\">\n        <p style=\"margin:0; font-size:12px; font-weight:500; color:#94a3b8; letter-spacing:0.5px;\">\n          STARTUP IDEA EVALUATION REPORT\n        </p>\n      </td>\n    </tr>\n\n  </table>\n\n</body>\n</html>",
         "options": {
           "appendAttribution": false
         }
@@ -1069,7 +993,124 @@
           "name": "Gmail account"
         }
       }
->>>>>>> 18c702b (new updater)
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1p1VJoErQblmkpXVXxi7T6FtcSBQJ2JZiLGJ0JPsuqKg",
+          "mode": "list",
+          "cachedResultName": "Idea_review_startup",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1p1VJoErQblmkpXVXxi7T6FtcSBQJ2JZiLGJ0JPsuqKg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2145026735,
+          "mode": "list",
+          "cachedResultName": "Market scores",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1p1VJoErQblmkpXVXxi7T6FtcSBQJ2JZiLGJ0JPsuqKg/edit#gid=2145026735"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "demand": "={{ $json.customerAnalysis.customerAcquisitionEase }}",
+            "growth": "={{ $json.solutionEvaluation.problem_solution_fit }}",
+            "attractiveness": "={{ $json.solutionEvaluation.customer_value }}",
+            "overall": "={{ $json.solutionEvaluation.unfair_advantage }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "demand",
+              "displayName": "demand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "growth",
+              "displayName": "growth",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "attractiveness",
+              "displayName": "attractiveness",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "overall",
+              "displayName": "overall",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        736,
+        464
+      ],
+      "id": "6df78cd3-c11b-43db-b42e-6400b36e0ed4",
+      "name": "Append row in sheet5",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "qPcYFvcEFGVnuJDH",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "query": "={{ $json.chatInput }}",
+        "options": {}
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavily",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        0
+      ],
+      "id": "c4f22ef4-b1d8-4d18-a448-56eb007533ae",
+      "name": "Search",
+      "credentials": {
+        "tavilyApi": {
+          "id": "rrwNOrE7278yTESS",
+          "name": "Tavily account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1078,7 +1119,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Search",
             "type": "main",
             "index": 0
           }
@@ -1125,8 +1166,6 @@
             "node": "Append row in sheet1",
             "type": "main",
             "index": 0
-<<<<<<< HEAD
-=======
           },
           {
             "node": "Append row in sheet2",
@@ -1142,7 +1181,6 @@
             "node": "Append row in sheet4",
             "type": "main",
             "index": 0
->>>>>>> 18c702b (new updater)
           }
         ]
       ]
@@ -1168,8 +1206,6 @@
           }
         ]
       ]
-<<<<<<< HEAD
-=======
     },
     "Append row in sheet2": {
       "main": [
@@ -1193,18 +1229,18 @@
         ]
       ]
     },
-    "Search in Tavily": {
-      "ai_tool": [
+    "Append row in sheet4": {
+      "main": [
         [
           {
-            "node": "AI Agent",
-            "type": "ai_tool",
+            "node": "Append row in sheet5",
+            "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Append row in sheet4": {
+    "Append row in sheet5": {
       "main": [
         [
           {
@@ -1214,22 +1250,26 @@
           }
         ]
       ]
->>>>>>> 18c702b (new updater)
+    },
+    "Search": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1",
-<<<<<<< HEAD
-    "binaryMode": "separate"
-  },
-  "versionId": "66dc0709-3604-43e5-9bc3-ac09ea4aed7b",
-=======
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "89e56009-473b-480e-909e-a8865ccf6968",
->>>>>>> 18c702b (new updater)
+  "versionId": "5343defd-970b-48e0-84d3-abb43ddcd833",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "312b8e1c27ba1ae94b15ee40f5b475cef18128657bfd8917a13927efa9db76b9"
