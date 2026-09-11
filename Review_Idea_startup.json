@@ -100,78 +100,106 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "problem strength": "={{ $('Code in JavaScript').item.json.scores[0].value }} - {{ $('Code in JavaScript').item.json.scores[0].label }}",
-            "market potential": "={{ $('Code in JavaScript').item.json.scores[1].value }} - {{ $('Code in JavaScript').item.json.scores[1].label }}",
-            "differentiation": "={{ $('Code in JavaScript').item.json.scores[2].value }} - {{ $('Code in JavaScript').item.json.scores[2].label }}",
-            "business potential": "={{ $('Code in JavaScript').item.json.scores[3].value }} - {{ $('Code in JavaScript').item.json.scores[3].label }}",
-            "feasibility": "={{ $('Code in JavaScript').item.json.scores[4].value }} - {{ $('Code in JavaScript').item.json.scores[4].label }}",
-            "scalability": "={{ $('Code in JavaScript').item.json.scores[5].value }} - {{ $('Code in JavaScript').item.json.scores[5].label }}",
-            "overall": "={{ $('Code in JavaScript').item.json.scores[6].value }} - {{ $('Code in JavaScript').item.json.scores[6].label }}"
+            "Idea Name": "={{ $('Code in JavaScript').item.json.ideaName }}",
+            "Problem Strength": "=Value : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Problem Strength')?.value }}\n\nLabel : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Problem Strength')?.label }}",
+            "Market Potential": "=Value : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Market Potential')?.value }}\n\nLabel : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Market Potential')?.label }}",
+            "Differentiation": "=Value : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Differentiation')?.value }}\n\nLabel : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Differentiation')?.label }}",
+            "Business Potential": "=Value : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Business Potential')?.value }}\n\nLabel : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Business Potential')?.label }}",
+            "Feasibility": "=Value : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Feasibility')?.value }}\n\nLabel : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Feasibility')?.label }}",
+            "Scalability": "=Value : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Scalability')?.value }}\n\nLabel : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Scalability')?.label }}",
+            "Overall": "=Value : {{ $('Code in JavaScript').item.json.overallIdeaScore }}  \n\nLabel : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Overall')?.label }}"
           },
           "matchingColumns": [],
           "schema": [
             {
-              "id": "problem strength",
-              "displayName": "problem strength",
+              "id": "ID",
+              "displayName": "ID",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
-              "id": "market potential",
-              "displayName": "market potential",
+              "id": "Idea Name",
+              "displayName": "Idea Name",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
-              "id": "differentiation",
-              "displayName": "differentiation",
+              "id": "Problem Strength",
+              "displayName": "Problem Strength",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
-              "id": "business potential",
-              "displayName": "business potential",
+              "id": "Market Potential",
+              "displayName": "Market Potential",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
-              "id": "feasibility",
-              "displayName": "feasibility",
+              "id": "Differentiation",
+              "displayName": "Differentiation",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
-              "id": "scalability",
-              "displayName": "scalability",
+              "id": "Business Potential",
+              "displayName": "Business Potential",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
-              "id": "overall",
-              "displayName": "overall",
+              "id": "Feasibility",
+              "displayName": "Feasibility",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Scalability",
+              "displayName": "Scalability",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Overall",
+              "displayName": "Overall",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
@@ -425,15 +453,15 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "intensityScore": "={{ $json.problemAnalysis.intensityScore }}",
-            "frequency": "={{ $json.problemAnalysis.frequency }}",
-            "currentAlternatives": "={{ $json.problemAnalysis.willingnessToPay }}",
-            "willingnessToPay": "={{ $json.problemAnalysis.willingnessToPay }}",
-            "marketPotential": "={{ $json.problemAnalysis.marketPotential }}",
-            "isWorthSolving": "={{ $json.problemAnalysis.isWorthSolving }}",
-            "reasoning": "={{ $json.problemAnalysis.reasoning }}",
-            "problemScore": "={{ $json.problemScore }}",
-            "problemValidationSummary": "={{ $json.problemValidationSummary }}"
+            "Intensity Score": "={{ $('Code in JavaScript').item.json.problemAnalysis.intensityScore }}",
+            "Frequency": "={{ $('Code in JavaScript').item.json.problemAnalysis.frequency }}",
+            "Current Alternatives": "={{ $('Code in JavaScript').item.json.problemAnalysis.currentAlternatives }}",
+            "Willingness To Pay": "={{ $('Code in JavaScript').item.json.problemAnalysis.willingnessToPay }}",
+            "Market Potential": "=Value : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Market Potential')?.value }}\n\nLabel : {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Market Potential')?.label }}",
+            "Is Worth Solving": "={{ $('Code in JavaScript').item.json.problemAnalysis.isWorthSolving }}",
+            "Reasoning": "={{ $('Code in JavaScript').item.json.problemAnalysis.reasoning }}",
+            "Problem Score": "={{ $('Code in JavaScript').item.json.problemScore }}",
+            "Problem Validation Summary": "={{ $('Code in JavaScript').item.json.problemValidationSummary }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -448,8 +476,18 @@
               "removed": true
             },
             {
-              "id": "intensityScore",
-              "displayName": "intensityScore",
+              "id": "Idea Name",
+              "displayName": "Idea Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Intensity Score",
+              "displayName": "Intensity Score",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -458,8 +496,8 @@
               "removed": false
             },
             {
-              "id": "frequency",
-              "displayName": "frequency",
+              "id": "Frequency",
+              "displayName": "Frequency",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -468,8 +506,8 @@
               "removed": false
             },
             {
-              "id": "currentAlternatives",
-              "displayName": "currentAlternatives",
+              "id": "Current Alternatives",
+              "displayName": "Current Alternatives",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -478,8 +516,8 @@
               "removed": false
             },
             {
-              "id": "willingnessToPay",
-              "displayName": "willingnessToPay",
+              "id": "Willingness To Pay",
+              "displayName": "Willingness To Pay",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -488,8 +526,8 @@
               "removed": false
             },
             {
-              "id": "marketPotential",
-              "displayName": "marketPotential",
+              "id": "Market Potential",
+              "displayName": "Market Potential",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -498,8 +536,8 @@
               "removed": false
             },
             {
-              "id": "isWorthSolving",
-              "displayName": "isWorthSolving",
+              "id": "Is Worth Solving",
+              "displayName": "Is Worth Solving",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -508,8 +546,8 @@
               "removed": false
             },
             {
-              "id": "reasoning",
-              "displayName": "reasoning",
+              "id": "Reasoning",
+              "displayName": "Reasoning",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -518,8 +556,8 @@
               "removed": false
             },
             {
-              "id": "problemScore",
-              "displayName": "problemScore",
+              "id": "Problem Score",
+              "displayName": "Problem Score",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -528,8 +566,8 @@
               "removed": false
             },
             {
-              "id": "problemValidationSummary",
-              "displayName": "problemValidationSummary",
+              "id": "Problem Validation Summary",
+              "displayName": "Problem Validation Summary",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -578,19 +616,19 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "customerProfile": "={{ $json.customerAnalysis.customerProfile }}",
-            "ageRangeGender": "={{ $json.customerAnalysis.ageRangeGender }}",
-            "geographicScope": "={{ $json.customerAnalysis.geographicScope }}",
-            "socioeconomicProfile": "={{ $json.customerAnalysis.socioeconomicProfile }}",
-            "knowledgeTechSavviness": "={{ $json.customerAnalysis.knowledgeTechSavviness }}",
-            "behavioralPsychologicalProfile": "={{ $json.customerAnalysis.behavioralPsychologicalProfile }}",
-            "b2bContext": "={{ $json.customerAnalysis.b2bContext }}",
-            "customerAcquisitionEase": "={{ $json.customerAnalysis.customerAcquisitionEase }}",
-            "targetCustomerProfile": "={{ $json.targetCustomerProfile }}",
-            "customerDemographics": "={{ $json.customerDemographics }}",
-            "customerSocioeconomicProfile": "={{ $json.customerSocioeconomicProfile }}",
-            "customerBehavioralProfile": "={{ $json.customerBehavioralProfile }}",
-            "SolutionEvaluation": "={{ $json.solutionEvaluation }}"
+            "Customer Profile": "={{ $('Code in JavaScript').item.json.customerAnalysis.customerProfile }}",
+            "Age Range Gender": "={{ $('Code in JavaScript').item.json.customerAnalysis.ageRangeGender }}",
+            "Geographic Scope": "={{ $('Code in JavaScript').item.json.customerAnalysis.geographicScope }}",
+            "Socioeconomic Profile": "={{ $('Code in JavaScript').item.json.customerAnalysis.socioeconomicProfile }}",
+            "Knowledge Tech Savviness": "={{ $('Code in JavaScript').item.json.customerAnalysis.knowledgeTechSavviness }}",
+            "Behavioral Psychological Profile": "={{ $('Code in JavaScript').item.json.customerAnalysis.behavioralPsychologicalProfile }}",
+            "B2B Context": "={{ $('Code in JavaScript').item.json.customerAnalysis.b2bContext }}",
+            "Customer Acquisition Ease": "={{ $('Code in JavaScript').item.json.customerAcquisitionEase }}",
+            "Target Customer Profile": "={{ $('Code in JavaScript').item.json.targetCustomerProfile }}",
+            "Customer Demographics": "={{ $('Code in JavaScript').item.json.customerDemographics }}",
+            "Customer Socioeconomic Profile": "={{ $('Code in JavaScript').item.json.customerSocioeconomicProfile }}",
+            "Customer Behavioral Profile": "={{ $('Code in JavaScript').item.json.customerBehavioralProfile }}",
+            "Solution Evaluation": "={{ JSON.stringify($('Code in JavaScript').item.json.solutionEvaluation) }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -605,8 +643,18 @@
               "removed": true
             },
             {
-              "id": "customerProfile",
-              "displayName": "customerProfile",
+              "id": "Idea Name",
+              "displayName": "Idea Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Customer Profile",
+              "displayName": "Customer Profile",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -615,8 +663,8 @@
               "removed": false
             },
             {
-              "id": "ageRangeGender",
-              "displayName": "ageRangeGender",
+              "id": "Age Range Gender",
+              "displayName": "Age Range Gender",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -625,8 +673,8 @@
               "removed": false
             },
             {
-              "id": "geographicScope",
-              "displayName": "geographicScope",
+              "id": "Geographic Scope",
+              "displayName": "Geographic Scope",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -635,8 +683,8 @@
               "removed": false
             },
             {
-              "id": "socioeconomicProfile",
-              "displayName": "socioeconomicProfile",
+              "id": "Socioeconomic Profile",
+              "displayName": "Socioeconomic Profile",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -645,8 +693,8 @@
               "removed": false
             },
             {
-              "id": "knowledgeTechSavviness",
-              "displayName": "knowledgeTechSavviness",
+              "id": "Knowledge Tech Savviness",
+              "displayName": "Knowledge Tech Savviness",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -655,8 +703,8 @@
               "removed": false
             },
             {
-              "id": "behavioralPsychologicalProfile",
-              "displayName": "behavioralPsychologicalProfile",
+              "id": "Behavioral Psychological Profile",
+              "displayName": "Behavioral Psychological Profile",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -665,8 +713,8 @@
               "removed": false
             },
             {
-              "id": "b2bContext",
-              "displayName": "b2bContext",
+              "id": "B2B Context",
+              "displayName": "B2B Context",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -675,8 +723,8 @@
               "removed": false
             },
             {
-              "id": "customerAcquisitionEase",
-              "displayName": "customerAcquisitionEase",
+              "id": "Customer Acquisition Ease",
+              "displayName": "Customer Acquisition Ease",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -685,8 +733,8 @@
               "removed": false
             },
             {
-              "id": "targetCustomerProfile",
-              "displayName": "targetCustomerProfile",
+              "id": "Target Customer Profile",
+              "displayName": "Target Customer Profile",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -695,8 +743,8 @@
               "removed": false
             },
             {
-              "id": "customerDemographics",
-              "displayName": "customerDemographics",
+              "id": "Customer Demographics",
+              "displayName": "Customer Demographics",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -705,8 +753,8 @@
               "removed": false
             },
             {
-              "id": "customerSocioeconomicProfile",
-              "displayName": "customerSocioeconomicProfile",
+              "id": "Customer Socioeconomic Profile",
+              "displayName": "Customer Socioeconomic Profile",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -715,8 +763,8 @@
               "removed": false
             },
             {
-              "id": "customerBehavioralProfile",
-              "displayName": "customerBehavioralProfile",
+              "id": "Customer Behavioral Profile",
+              "displayName": "Customer Behavioral Profile",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -725,8 +773,8 @@
               "removed": false
             },
             {
-              "id": "SolutionEvaluation",
-              "displayName": "SolutionEvaluation",
+              "id": "Solution Evaluation",
+              "displayName": "Solution Evaluation",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -759,7 +807,7 @@
       "parameters": {
         "sendTo": "moathhazeem661@gmail.com",
         "subject": "=تحليل الفكرة اذا تستهل الحل : {{ $('Code in JavaScript').item.json.ideaName }}     ",
-        "message": "=<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Problem Analysis</title>\n</head>\n\n<body style=\"margin:0; padding:40px 15px; background-color:#f0f3f8; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; color:#1e293b;\">\n\n  <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"max-width:650px; margin:0 auto; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);\">\n\n    <tr>\n      <td style=\"padding:32px 35px; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color:#ffffff;\">\n        <span style=\"display:inline-block; padding:4px 12px; background-color:rgba(255,255,255,0.2); border-radius:20px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;\">\n          Module 01\n        </span>\n        <h1 style=\"margin:0; font-size:26px; font-weight:700; line-height:34px; letter-spacing:-0.5px;\">\n          Problem Analysis\n        </h1>\n        <p style=\"margin:6px 0 0; font-size:14px; opacity:0.9; line-height:20px;\">\n          Evaluation of the underlying problem and its commercial relevance\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:25px 35px 15px;\">\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"background-color:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px 20px;\">\n          <tr>\n            <td style=\"font-size:15px; font-weight:600; color:#334155;\">\n              Is this problem worth solving?\n            </td>\n            <td align=\"right\">\n              <span style=\"display:inline-block; padding:6px 16px; background-color:#dcfce7; border:1px solid #86efac; border-radius:20px; font-size:13px; font-weight:700; color:#166534;\">\n                {{ $json.isWorthSolving }}\n              </span>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:10px 35px 20px;\">\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius:12px; border:1px solid #bfdbfe;\">\n          <tr>\n            <td style=\"padding:20px 24px;\">\n              <p style=\"margin:0 0 4px; font-size:13px; font-weight:600; text-transform:uppercase; color:#1e40af; letter-spacing:0.5px;\">\n                Problem Score\n              </p>\n              <div style=\"font-size:36px; font-weight:800; color:#1e3a8a; line-height:42px;\">\n                {{ $json.problemScore }} <span style=\"font-size:16px; color:#3b82f6; font-weight:600;\">/ 10</span>\n              </div>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:5px 35px 20px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Validation Summary\n        </h2>\n        <p style=\"margin:0; font-size:15px; line-height:25px; color:#475569;\">\n          {{ $json.problemValidationSummary }}\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:5px 35px 20px;\">\n        <h2 style=\"margin:0 0 14px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Problem Details\n        </h2>\n\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:separate; border-spacing:0 8px;\">\n          \n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; width:40%; font-size:14px; font-weight:600; color:#334155;\">\n              Intensity\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:#4f46e5;\">\n              {{ $json.intensityScore }} <span style=\"font-size:12px; color:#94a3b8; font-weight:normal;\">/ 100</span>\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; font-weight:600; color:#334155;\">\n              Frequency\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:#475569;\">\n              {{ $json.frequency }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; font-weight:600; color:#334155;\">\n              Willingness to Pay\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:#475569;\">\n              {{ $json.willingnessToPay }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; font-weight:600; color:#334155;\">\n              Market Potential\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:#475569;\">\n              {{ $json.marketPotential }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; font-weight:600; color:#334155;\">\n              Current Alternatives\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; line-height:22px; color:#475569;\">\n              {{ $json.currentAlternatives }}\n            </td>\n          </tr>\n\n        </table>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:5px 35px 30px;\">\n        <h2 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Analyst Reasoning\n        </h2>\n        <div style=\"padding:18px 20px; background-color:#f1f5f9; border-left:4px solid #6366f1; border-radius:0 12px 12px 0; font-size:14px; line-height:24px; color:#334155; font-style:italic;\">\n          \"{{ $json.reasoning }}\"\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:20px 35px; background-color:#f8fafc; border-top:1px solid #f1f5f9; text-align:center;\">\n        <p style=\"margin:0; font-size:12px; font-weight:500; color:#94a3b8; letter-spacing:0.5px;\">\n          STARTUP IDEA EVALUATION REPORT\n        </p>\n      </td>\n    </tr>\n\n  </table>\n\n</body>\n</html>",
+        "message": "=<!DOCTYPE html>\n<html lang=\"ar\" dir=\"rtl\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>تحليل المشكلة</title>\n</head>\n\n<body style=\"margin:0; padding:40px 15px; background-color:#f0f3f8; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#1e293b; direction:rtl; text-align:right;\">\n\n  <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"max-width:650px; margin:0 auto; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);\">\n\n    <!-- Header -->\n    <tr>\n      <td style=\"padding:32px 35px; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color:#ffffff;\">\n        <span style=\"display:inline-block; padding:4px 12px; background-color:rgba(255,255,255,0.2); border-radius:20px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;\">\n          الوحـدة 01\n        </span>\n        <h1 style=\"margin:0; font-size:26px; font-weight:700; line-height:34px; letter-spacing:-0.5px;\">\n          تحليل المشكلة\n        </h1>\n        <p style=\"margin:6px 0 0; font-size:14px; opacity:0.9; line-height:20px;\">\n          تقييم المشكلة الأساسية ومدى جدواها التجارية\n        </p>\n      </td>\n    </tr>\n\n    <!-- Is Worth Solving -->\n    <tr>\n      <td style=\"padding:25px 35px 15px;\">\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"background-color:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px 20px;\">\n          <tr>\n            <td style=\"font-size:15px; font-weight:600; color:#334155;\">\n              هل المشكلة تستحق الحل؟\n            </td>\n            <td align=\"left\">\n              <span style=\"display:inline-block; padding:6px 16px; background-color:#dcfce7; border:1px solid #86efac; border-radius:20px; font-size:13px; font-weight:700; color:#166534;\">\n                {{ $('Code in JavaScript').item.json.isWorthSolving }}\n              </span>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n\n    <!-- Problem Score -->\n    <tr>\n      <td style=\"padding:10px 35px 20px;\">\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius:12px; border:1px solid #bfdbfe;\">\n          <tr>\n            <td style=\"padding:20px 24px;\">\n              <p style=\"margin:0 0 4px; font-size:13px; font-weight:600; text-transform:uppercase; color:#1e40af; letter-spacing:0.5px;\">\n                تقييم المشكلة\n              </p>\n              <div style=\"font-size:36px; font-weight:800; color:#1e3a8a; line-height:42px;\">\n                {{ $('Code in JavaScript').item.json.problemScore }} <span style=\"font-size:16px; color:#3b82f6; font-weight:600;\">/ 10</span>\n              </div>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n\n    <!-- Validation Summary -->\n    <tr>\n      <td style=\"padding:5px 35px 20px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          ملخص التحقق\n        </h2>\n        <p style=\"margin:0; font-size:15px; line-height:25px; color:#475569;\">\n          {{ $('Code in JavaScript').item.json.problemValidationSummary }}\n        </p>\n      </td>\n    </tr>\n\n    <!-- Problem Details -->\n    <tr>\n      <td style=\"padding:5px 35px 20px;\">\n        <h2 style=\"margin:0 0 14px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          تفاصيل المشكلة\n        </h2>\n\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:separate; border-spacing:0 8px;\">\n          \n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; width:40%; font-size:14px; font-weight:600; color:#334155;\">\n              شدة المشكلة\n            </td>\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; font-weight:700; color:#4f46e5;\">\n              {{ $('Code in JavaScript').item.json.problemAnalysis.intensityScore }} <span style=\"font-size:12px; color:#94a3b8; font-weight:normal;\">/ 100</span>\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; font-weight:600; color:#334155;\">\n              التكرار\n            </td>\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.problemAnalysis.frequency }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; font-weight:600; color:#334155;\">\n              الرغبة في الدفع\n            </td>\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.problemAnalysis.willingnessToPay }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; font-weight:600; color:#334155;\">\n              إمكانيات السوق\n            </td>\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.scores.find(s => s.name === 'Market Potential')?.label }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; font-weight:600; color:#334155;\">\n              البدائل الحالية\n            </td>\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; line-height:22px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.problemAnalysis.currentAlternatives }}\n            </td>\n          </tr>\n\n        </table>\n      </td>\n    </tr>\n\n    <!-- Analyst Reasoning -->\n    <tr>\n      <td style=\"padding:5px 35px 30px;\">\n        <h2 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          تحليل وتبرير المحلل\n        </h2>\n        <div style=\"padding:18px 20px; background-color:#f1f5f9; border-right:4px solid #6366f1; border-radius:12px 0 0 12px; font-size:14px; line-height:24px; color:#334155; font-style:italic;\">\n          \"{{ $('Code in JavaScript').item.json.problemAnalysis.reasoning }}\"\n        </div>\n      </td>\n    </tr>\n\n    <!-- Footer -->\n    <tr>\n      <td style=\"padding:20px 35px; background-color:#f8fafc; border-top:1px solid #f1f5f9; text-align:center;\">\n        <p style=\"margin:0; font-size:12px; font-weight:500; color:#94a3b8; letter-spacing:0.5px;\">\n          تقرير تقييم فكرة المشروع الناشئ\n        </p>\n      </td>\n    </tr>\n\n  </table>\n\n</body>\n</html>",
         "options": {
           "appendAttribution": false
         }
@@ -784,7 +832,7 @@
       "parameters": {
         "sendTo": "moathhazeem661@gmail.com",
         "subject": "=تحليل العميل : {{ $('Code in JavaScript').item.json.ideaName }}",
-        "message": "=<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Customer Analysis</title>\n</head>\n\n<body style=\"margin:0; padding:40px 15px; background-color:#f0f3f8; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; color:#1e293b;\">\n\n  <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"max-width:650px; margin:0 auto; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);\">\n\n    <tr>\n      <td style=\"padding:32px 35px; background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color:#ffffff;\">\n        <span style=\"display:inline-block; padding:4px 12px; background-color:rgba(255,255,255,0.2); border-radius:20px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;\">\n          Module 02\n        </span>\n        <h1 style=\"margin:0; font-size:26px; font-weight:700; line-height:34px; letter-spacing:-0.5px;\">\n          Customer Analysis\n        </h1>\n        <p style=\"margin:6px 0 0; font-size:14px; opacity:0.9; line-height:20px;\">\n          Target persona, demographics, and acquisition strategy\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:25px 35px 20px;\">\n        <div style=\"padding:20px; background-color:#f0f9ff; border:1px solid #bae6fd; border-radius:12px;\">\n          <h2 style=\"margin:0 0 8px; font-size:14px; font-weight:700; text-transform:uppercase; color:#0369a1; letter-spacing:0.5px;\">\n            Ideal Customer Profile\n          </h2>\n          <p style=\"margin:0; font-size:15px; line-height:24px; color:#0c4a6e; font-weight:500;\">\n            {{ $json.targetCustomerProfile || $json.targetCustomer }}\n          </p>\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Demographics & Economics\n        </h2>\n\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:separate; border-spacing:0 8px;\">\n          \n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; width:40%; font-size:14px; font-weight:600; color:#334155;\">\n              Demographics\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:#475569;\">\n              {{ $json.customerDemographics }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; font-weight:600; color:#334155;\">\n              Socioeconomic\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; line-height:22px; color:#475569;\">\n              {{ $json.customerSocioeconomicProfile }}\n            </td>\n          </tr>\n\n        </table>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Behavioral Profile\n        </h2>\n        <p style=\"margin:0; padding:16px; background-color:#f8fafc; border-radius:12px; border:1px solid #e2e8f0; font-size:14px; line-height:24px; color:#475569;\">\n          {{ $json.customerBehavioralProfile }}\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 30px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Customer Acquisition\n        </h2>\n        <div style=\"padding:18px 20px; background-color:#fdf4ff; border-left:4px solid #d946ef; border-radius:0 12px 12px 0; font-size:14px; line-height:24px; color:#701a75;\">\n          {{ $json.customerAcquisitionEase }}\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:20px 35px; background-color:#f8fafc; border-top:1px solid #f1f5f9; text-align:center;\">\n        <p style=\"margin:0; font-size:12px; font-weight:500; color:#94a3b8; letter-spacing:0.5px;\">\n          STARTUP IDEA EVALUATION REPORT\n        </p>\n      </td>\n    </tr>\n\n  </table>\n\n</body>\n</html>",
+        "message": "=<!DOCTYPE html>\n<html lang=\"ar\" dir=\"rtl\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>تحليل العملاء</title>\n</head>\n\n<body style=\"margin:0; padding:40px 15px; background-color:#f0f3f8; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#1e293b; direction:rtl; text-align:right;\">\n\n  <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"max-width:650px; margin:0 auto; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);\">\n\n    <!-- Header -->\n    <tr>\n      <td style=\"padding:32px 35px; background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color:#ffffff;\">\n        <span style=\"display:inline-block; padding:4px 12px; background-color:rgba(255,255,255,0.2); border-radius:20px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;\">\n          الوحـدة 02\n        </span>\n        <h1 style=\"margin:0; font-size:26px; font-weight:700; line-height:34px; letter-spacing:-0.5px;\">\n          تحليل العملاء\n        </h1>\n        <p style=\"margin:6px 0 0; font-size:14px; opacity:0.9; line-height:20px;\">\n          الشخصية المستهدفة، البيانات الديموغرافية، واستراتيجية الاستحواذ\n        </p>\n      </td>\n    </tr>\n\n    <!-- Ideal Customer Profile -->\n    <tr>\n      <td style=\"padding:25px 35px 20px;\">\n        <div style=\"padding:20px; background-color:#f0f9ff; border:1px solid #bae6fd; border-radius:12px;\">\n          <h2 style=\"margin:0 0 8px; font-size:14px; font-weight:700; text-transform:uppercase; color:#0369a1; letter-spacing:0.5px;\">\n            ملف العميل المثالي\n          </h2>\n          <p style=\"margin:0; font-size:15px; line-height:24px; color:#0c4a6e; font-weight:500;\">\n            {{ $('Code in JavaScript').item.json.customerAnalysis?.targetCustomerProfile || $('Code in JavaScript').item.json.targetCustomerProfile || $('Code in JavaScript').item.json.targetCustomer }}\n          </p>\n        </div>\n      </td>\n    </tr>\n\n    <!-- Demographics & Economics -->\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          البيانات الديموغرافية والاقتصادية\n        </h2>\n\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:separate; border-spacing:0 8px;\">\n          \n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; width:40%; font-size:14px; font-weight:600; color:#334155;\">\n              البيانات الديموغرافية\n            </td>\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.customerAnalysis?.customerDemographics || $('Code in JavaScript').item.json.customerDemographics }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; font-weight:600; color:#334155;\">\n              الوضع الاقتصادي والاجتماعي\n            </td>\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; line-height:22px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.customerAnalysis?.customerSocioeconomicProfile || $('Code in JavaScript').item.json.customerSocioeconomicProfile }}\n            </td>\n          </tr>\n\n        </table>\n      </td>\n    </tr>\n\n    <!-- Behavioral Profile -->\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          الملف السلوكي\n        </h2>\n        <p style=\"margin:0; padding:16px; background-color:#f8fafc; border-radius:12px; border:1px solid #e2e8f0; font-size:14px; line-height:24px; color:#475569;\">\n          {{ $('Code in JavaScript').item.json.customerAnalysis?.customerBehavioralProfile || $('Code in JavaScript').item.json.customerBehavioralProfile }}\n        </p>\n      </td>\n    </tr>\n\n    <!-- Customer Acquisition -->\n    <tr>\n      <td style=\"padding:0 35px 30px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          استحواذ العملاء\n        </h2>\n        <div style=\"padding:18px 20px; background-color:#fdf4ff; border-right:4px solid #d946ef; border-radius:12px 0 0 12px; font-size:14px; line-height:24px; color:#701a75;\">\n          {{ $('Code in JavaScript').item.json.customerAnalysis?.customerAcquisitionEase || $('Code in JavaScript').item.json.customerAcquisitionEase }}\n        </div>\n      </td>\n    </tr>\n\n    <!-- Footer -->\n    <tr>\n      <td style=\"padding:20px 35px; background-color:#f8fafc; border-top:1px solid #f1f5f9; text-align:center;\">\n        <p style=\"margin:0; font-size:12px; font-weight:500; color:#94a3b8; letter-spacing:0.5px;\">\n          تقرير تقييم فكرة المشروع الناشئ\n        </p>\n      </td>\n    </tr>\n\n  </table>\n\n</body>\n</html>",
         "options": {
           "appendAttribution": false
         }
@@ -825,17 +873,18 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "geographic_opportunities": "={{ $json.customerAnalysis.geographicScope }}",
-            "market": "={{ $json.customerAnalysis.b2bContext }}",
-            "market_summary": "={{ $json.customerAnalysis.customerProfile }}",
-            "demand_signals": "={{ $json.customerAnalysis.behavioralPsychologicalProfile }}",
-            "growth": "={{ $json.solutionEvaluation.problem_solution_fit }}",
-            "trends": "={{ $json.customerAnalysis.knowledgeTechSavviness }}",
-            "opportunities": "={{ $json.solutionEvaluation.differentiation }}",
-            "industry_maturity": "={{ $json.solutionEvaluation.technical_feasibility }}",
-            "market_risks": "={{ $json.solutionEvaluation.key_risks }}",
-            "research_gaps": "={{ $json.solutionEvaluation.execution_blockers }}",
-            "research_available": "={{ $json.solutionEvaluation.operational_feasibility }}"
+            "Idea Name": "={{ $('Code in JavaScript').item.json.ideaName }}",
+            "Market": "={{ $('Code in JavaScript').item.json.marketAnalysis.market }}",
+            "Market Summary": "={{ $('Code in JavaScript').item.json.marketAnalysis.marketSummary }}",
+            "Demand Signals": "={{ $('Code in JavaScript').item.json.marketAnalysis.demandSignals.join(', ') }}",
+            "Growth": "={{ $('Code in JavaScript').item.json.marketAnalysis.growth }}",
+            "Trends": "={{ $('Code in JavaScript').item.json.marketAnalysis.trends.join(', ') }}",
+            "Opportunities": "={{ $('Code in JavaScript').item.json.marketAnalysis.opportunities.join(', ') }}",
+            "Geographic Opportunities": "={{ $('Code in JavaScript').item.json.marketAnalysis.geographicOpportunities.join(', ') }}",
+            "Industry Maturity": "={{ $('Code in JavaScript').item.json.marketAnalysis.industryMaturity }}",
+            "Market Risks": "={{ $('Code in JavaScript').item.json.marketAnalysis.marketRisks.join(', ') }}",
+            "Research Gaps": "={{ $('Code in JavaScript').item.json.marketAnalysis.researchGaps.join(', ') }}",
+            "Research Available": "={{ $('Code in JavaScript').item.json.marketAnalysis.researchAvailable }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -850,8 +899,8 @@
               "removed": true
             },
             {
-              "id": "market",
-              "displayName": "market",
+              "id": "Idea Name",
+              "displayName": "Idea Name",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -860,8 +909,8 @@
               "removed": false
             },
             {
-              "id": "market_summary",
-              "displayName": "market_summary",
+              "id": "Market",
+              "displayName": "Market",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -870,8 +919,8 @@
               "removed": false
             },
             {
-              "id": "demand_signals",
-              "displayName": "demand_signals",
+              "id": "Market Summary",
+              "displayName": "Market Summary",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -880,8 +929,8 @@
               "removed": false
             },
             {
-              "id": "growth",
-              "displayName": "growth",
+              "id": "Demand Signals",
+              "displayName": "Demand Signals",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -890,8 +939,8 @@
               "removed": false
             },
             {
-              "id": "trends",
-              "displayName": "trends",
+              "id": "Growth",
+              "displayName": "Growth",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -900,8 +949,8 @@
               "removed": false
             },
             {
-              "id": "opportunities",
-              "displayName": "opportunities",
+              "id": "Trends",
+              "displayName": "Trends",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -910,8 +959,8 @@
               "removed": false
             },
             {
-              "id": "geographic_opportunities",
-              "displayName": "geographic_opportunities",
+              "id": "Opportunities",
+              "displayName": "Opportunities",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -920,8 +969,8 @@
               "removed": false
             },
             {
-              "id": "industry_maturity",
-              "displayName": "industry_maturity",
+              "id": "Geographic Opportunities",
+              "displayName": "Geographic Opportunities",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -930,8 +979,8 @@
               "removed": false
             },
             {
-              "id": "market_risks",
-              "displayName": "market_risks",
+              "id": "Industry Maturity",
+              "displayName": "Industry Maturity",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -940,8 +989,8 @@
               "removed": false
             },
             {
-              "id": "research_gaps",
-              "displayName": "research_gaps",
+              "id": "Market Risks",
+              "displayName": "Market Risks",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -950,8 +999,18 @@
               "removed": false
             },
             {
-              "id": "research_available",
-              "displayName": "research_available",
+              "id": "Research Gaps",
+              "displayName": "Research Gaps",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Research Available",
+              "displayName": "Research Available",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -983,8 +1042,8 @@
     {
       "parameters": {
         "sendTo": "moathhazeem661@gmail.com",
-        "subject": "=تحليل العميل : {{ $('Code in JavaScript').item.json.ideaName }}",
-        "message": "=<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Customer Analysis</title>\n</head>\n\n<body style=\"margin:0; padding:40px 15px; background-color:#f0f3f8; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; color:#1e293b;\">\n\n  <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"max-width:650px; margin:0 auto; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);\">\n\n    <tr>\n      <td style=\"padding:32px 35px; background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color:#ffffff;\">\n        <span style=\"display:inline-block; padding:4px 12px; background-color:rgba(255,255,255,0.2); border-radius:20px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;\">\n          Module 02\n        </span>\n        <h1 style=\"margin:0; font-size:26px; font-weight:700; line-height:34px; letter-spacing:-0.5px;\">\n          Customer Analysis\n        </h1>\n        <p style=\"margin:6px 0 0; font-size:14px; opacity:0.9; line-height:20px;\">\n          Target persona, demographics, and acquisition strategy\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:25px 35px 20px;\">\n        <div style=\"padding:20px; background-color:#f0f9ff; border:1px solid #bae6fd; border-radius:12px;\">\n          <h2 style=\"margin:0 0 8px; font-size:14px; font-weight:700; text-transform:uppercase; color:#0369a1; letter-spacing:0.5px;\">\n            Ideal Customer Profile\n          </h2>\n          <p style=\"margin:0; font-size:15px; line-height:24px; color:#0c4a6e; font-weight:500;\">\n            {{ $('Code in JavaScript').item.json.targetCustomerProfile || $('Code in JavaScript').item.json.targetCustomer || $('Code in JavaScript').item.json.customerAnalysis.customerProfile }}\n          </p>\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Demographics & Economics\n        </h2>\n\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:separate; border-spacing:0 8px;\">\n          \n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; width:40%; font-size:14px; font-weight:600; color:#334155;\">\n              Demographics\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.customerDemographics || $('Code in JavaScript').item.json.customerAnalysis.ageRangeGender }}\n            </td>\n          </tr>\n\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:12px 16px; border-radius:8px 0 0 8px; font-size:14px; font-weight:600; color:#334155;\">\n              Socioeconomic\n            </td>\n            <td style=\"padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; line-height:22px; color:#475569;\">\n              {{ $('Code in JavaScript').item.json.customerSocioeconomicProfile || $('Code in JavaScript').item.json.customerAnalysis.socioeconomicProfile }}\n            </td>\n          </tr>\n\n        </table>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Behavioral Profile\n        </h2>\n        <p style=\"margin:0; padding:16px; background-color:#f8fafc; border-radius:12px; border:1px solid #e2e8f0; font-size:14px; line-height:24px; color:#475569;\">\n          {{ $('Code in JavaScript').item.json.customerBehavioralProfile || $('Code in JavaScript').item.json.customerAnalysis.behavioralPsychologicalProfile }}\n        </p>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 35px 30px;\">\n        <h2 style=\"margin:0 0 10px; font-size:16px; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px;\">\n          Customer Acquisition\n        </h2>\n        <div style=\"padding:18px 20px; background-color:#fdf4ff; border-left:4px solid #d946ef; border-radius:0 12px 12px 0; font-size:14px; line-height:24px; color:#701a75;\">\n          {{ $('Code in JavaScript').item.json.customerAcquisitionEase || $('Code in JavaScript').item.json.customerAnalysis.customerAcquisitionEase }}\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:20px 35px; background-color:#f8fafc; border-top:1px solid #f1f5f9; text-align:center;\">\n        <p style=\"margin:0; font-size:12px; font-weight:500; color:#94a3b8; letter-spacing:0.5px;\">\n          STARTUP IDEA EVALUATION REPORT\n        </p>\n      </td>\n    </tr>\n\n  </table>\n\n</body>\n</html>",
+        "subject": "=تحليل السوق : {{ $('Code in JavaScript').item.json.ideaName }}",
+        "message": "=<!DOCTYPE html>\n<html lang=\"ar\" dir=\"rtl\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>تقرير التقييم وتحليل السوق الشامل</title>\n</head>\n\n<body style=\"margin:0; padding:40px 15px; background-color:#f0f3f8; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#1e293b; direction:rtl; text-align:right;\">\n\n  <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"max-width:650px; margin:0 auto; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);\">\n\n    <!-- Header -->\n    <tr>\n      <td style=\"padding:32px 35px; background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%); color:#ffffff;\">\n        <span style=\"display:inline-block; padding:4px 12px; background-color:rgba(255,255,255,0.2); border-radius:20px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;\">\n          تقرير التقييم الشامل\n        </span>\n        <h1 style=\"margin:0; font-size:24px; font-weight:700; line-height:34px; letter-spacing:-0.5px;\">\n          {{ $json['Idea Name'] }}\n        </h1>\n        <p style=\"margin:6px 0 0; font-size:14px; opacity:0.9; line-height:20px;\">\n          السوق: {{ $('Append row in sheet4').item.json.Market }}\n        </p>\n      </td>\n    </tr>\n\n    <!-- Key Scores Summary -->\n    <tr>\n      <td style=\"padding:25px 35px 15px;\">\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius:12px; border:1px solid #bfdbfe;\">\n          <tr>\n            <td style=\"padding:20px; text-align:center; border-bottom:1px solid #bfdbfe;\">\n              <p style=\"margin:0 0 4px; font-size:12px; font-weight:700; text-transform:uppercase; color:#1e40af;\">\n                التقييم العام (Overall Score)\n              </p>\n              <div style=\"font-size:36px; font-weight:800; color:#1e3a8a;\">\n                {{ $json.Overall }} <span style=\"font-size:16px; color:#3b82f6; font-weight:600;\">/ 100</span>\n              </div>\n            </td>\n          </tr>\n          <tr>\n            <td style=\"padding:15px;\">\n              <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n                <tr>\n                  <td style=\"text-align:center; width:33%; font-size:13px; color:#1e40af;\">\n                    <strong>الطلب:</strong> {{ $json.Demand }}\n                  </td>\n                  <td style=\"text-align:center; width:33%; font-size:13px; color:#1e40af; border-right:1px solid #bfdbfe; border-left:1px solid #bfdbfe;\">\n                    <strong>النمو:</strong> {{ $json.Growth }}\n                  </td>\n                  <td style=\"text-align:center; width:33%; font-size:13px; color:#1e40af;\">\n                    <strong>الجاذبية:</strong> {{ $json.Attractiveness }}\n                  </td>\n                </tr>\n              </table>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n\n    <!-- Market Overview -->\n    <tr>\n      <td style=\"padding:10px 35px 20px;\">\n        <div style=\"padding:18px; background-color:#f0f9ff; border:1px solid #bae6fd; border-radius:12px;\">\n          <h2 style=\"margin:0 0 6px; font-size:14px; font-weight:700; text-transform:uppercase; color:#0369a1;\">\n            ملخص السوق\n          </h2>\n          <p style=\"margin:0; font-size:14px; line-height:22px; color:#0c4a6e;\">\n            {{ $('Append row in sheet4').item.json['Market Summary'] }}\n          </p>\n        </div>\n      </td>\n    </tr>\n\n    <!-- Key Insights Table (Structured as Bullet Points) -->\n    <tr>\n      <td style=\"padding:0 35px 20px;\">\n        <h2 style=\"margin:0 0 12px; font-size:15px; font-weight:700; color:#0f172a; text-transform:uppercase;\">\n          أبرز مؤشرات السوق والفرص\n        </h2>\n\n        <table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:separate; border-spacing:0 10px;\">\n          \n          <!-- Demand Signals -->\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:14px 16px; border-radius:0 8px 8px 0; width:30%; font-size:13px; font-weight:600; color:#334155; vertical-align:top;\">\n              مؤشرات الطلب\n            </td>\n            <td style=\"padding:14px 16px; border-radius:8px 0 0 8px; font-size:13px; color:#475569;\">\n              <ul style=\"margin:0; padding-right:18px; line-height:22px;\">\n                {{ ($('Append row in sheet4').item.json['Demand Signals'] || '').split(/[,،\\n.]+/).map(i => i.trim()).filter(Boolean).map(i => `<li style=\"margin-bottom:4px;\">${i}</li>`).join('') }}\n              </ul>\n            </td>\n          </tr>\n\n          <!-- Trends -->\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:14px 16px; border-radius:0 8px 8px 0; width:30%; font-size:13px; font-weight:600; color:#334155; vertical-align:top;\">\n              الاتجاهات (Trends)\n            </td>\n            <td style=\"padding:14px 16px; border-radius:8px 0 0 8px; font-size:13px; color:#475569;\">\n              <ul style=\"margin:0; padding-right:18px; line-height:22px;\">\n                {{ ($('Append row in sheet4').item.json.Trends || '').split(/[,،\\n.]+/).map(i => i.trim()).filter(Boolean).map(i => `<li style=\"margin-bottom:4px;\">${i}</li>`).join('') }}\n              </ul>\n            </td>\n          </tr>\n\n          <!-- Opportunities -->\n          <tr style=\"background-color:#f8fafc;\">\n            <td style=\"padding:14px 16px; border-radius:0 8px 8px 0; width:30%; font-size:13px; font-weight:600; color:#334155; vertical-align:top;\">\n              الفرص والنمو\n            </td>\n            <td style=\"padding:14px 16px; border-radius:8px 0 0 8px; font-size:13px; color:#475569;\">\n              <ul style=\"margin:0; padding-right:18px; line-height:22px;\">\n                {{ ($('Append row in sheet4').item.json.Opportunities || '').split(/[,،\\n.]+/).map(i => i.trim()).filter(Boolean).map(i => `<li style=\"margin-bottom:4px;\">${i}</li>`).join('') }}\n                {{ ($('Append row in sheet4').item.json['Geographic Opportunities'] || '').split(/[,،\\n.]+/).map(i => i.trim()).filter(Boolean).map(i => `<li style=\"margin-bottom:4px;\"><strong>فرصة جغرافية:</strong> ${i}</li>`).join('') }}\n              </ul>\n            </td>\n          </tr>\n\n        </table>\n      </td>\n    </tr>\n\n    <!-- Risks Block (Structured Bullets) -->\n    <tr>\n      <td style=\"padding:0 35px 30px;\">\n        <div style=\"padding:16px 20px; background-color:#fff1f2; border-right:4px solid #f43f5e; border-radius:12px 0 0 12px; font-size:13px; color:#9f1239;\">\n          <strong style=\"display:block; margin-bottom:8px; font-size:14px;\">مخاطر السوق الرئيسية:</strong>\n          <ul style=\"margin:0; padding-right:18px; line-height:22px;\">\n            {{ ($('Append row in sheet4').item.json['Market Risks'] || '').split(/[,،\\n.]+/).map(i => i.trim()).filter(Boolean).map(i => `<li style=\"margin-bottom:4px;\">${i}</li>`).join('') }}\n          </ul>\n        </div>\n      </td>\n    </tr>\n\n    <!-- Footer -->\n    <tr>\n      <td style=\"padding:20px 35px; background-color:#f8fafc; border-top:1px solid #f1f5f9; text-align:center;\">\n        <p style=\"margin:0; font-size:12px; font-weight:500; color:#94a3b8;\">\n          تقرير تقييم فكرة المشروع الناشئ\n        </p>\n      </td>\n    </tr>\n\n  </table>\n\n</body>\n</html>",
         "options": {
           "appendAttribution": false
         }
@@ -1025,10 +1084,11 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "demand": "={{ $json.customerAnalysis.customerAcquisitionEase }}",
-            "growth": "={{ $json.solutionEvaluation.problem_solution_fit }}",
-            "attractiveness": "={{ $json.solutionEvaluation.customer_value }}",
-            "overall": "={{ $json.solutionEvaluation.unfair_advantage }}"
+            "Idea Name": "={{ $('Code in JavaScript').item.json.ideaName }}",
+            "Demand": "={{ $('Code in JavaScript').item.json.marketScores.demand }}",
+            "Growth": "={{ $('Code in JavaScript').item.json.marketScores.growth }}",
+            "Attractiveness": "={{ $('Code in JavaScript').item.json.marketScores.attractiveness }}",
+            "Overall": "={{ $('Code in JavaScript').item.json.marketScores.overall }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -1043,8 +1103,8 @@
               "removed": true
             },
             {
-              "id": "demand",
-              "displayName": "demand",
+              "id": "Idea Name",
+              "displayName": "Idea Name",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -1053,8 +1113,8 @@
               "removed": false
             },
             {
-              "id": "growth",
-              "displayName": "growth",
+              "id": "Demand",
+              "displayName": "Demand",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -1063,8 +1123,8 @@
               "removed": false
             },
             {
-              "id": "attractiveness",
-              "displayName": "attractiveness",
+              "id": "Growth",
+              "displayName": "Growth",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -1073,8 +1133,18 @@
               "removed": false
             },
             {
-              "id": "overall",
-              "displayName": "overall",
+              "id": "Attractiveness",
+              "displayName": "Attractiveness",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Overall",
+              "displayName": "Overall",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -1149,7 +1219,8 @@
             "Competitive Gaps": "={{ $json.competitorAnalysis.competitiveGaps.map(gap => \"• \" + gap).join('\\n') }}",
             "Biggest Competitor": "=• اسم المنافس: {{ $json.competitorAnalysis.biggestCompetitor.name }}\n• سبب القوة: {{ $json.competitorAnalysis.biggestCompetitor.reason }}\n• الميزة الأساسية: {{ $json.competitorAnalysis.biggestCompetitor.mainAdvantage }}",
             "Startup Position": "=• التمايز: {{ $json.competitorAnalysis.startupPosition.differentiationLevel }}\n• التهديد: {{ $json.competitorAnalysis.startupPosition.competitiveThreat }}\n• أكبر خطر: {{ $json.competitorAnalysis.startupPosition.biggestCompetitiveRisk }}",
-            "Final Competitive Verdict": "={{ $json.competitorAnalysis.finalCompetitiveVerdict }}"
+            "Final Competitive Verdict": "={{ $json.competitorAnalysis.finalCompetitiveVerdict }}",
+            "Idea Name": "={{ $('Code in JavaScript').item.json.ideaName }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -1162,6 +1233,16 @@
               "type": "string",
               "canBeUsedToMatch": true,
               "removed": true
+            },
+            {
+              "id": "Idea Name",
+              "displayName": "Idea Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
               "id": "Competition Overview",
@@ -1258,7 +1339,7 @@
       "parameters": {
         "sendTo": "moathhazeem661@gmail.com",
         "subject": "=تحليل المنافسين لمشروع : {{ $('Code in JavaScript').item.json.ideaName }}",
-        "message": "=<!DOCTYPE html>\n<html lang=\"ar\" dir=\"rtl\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Competitor Analysis Report</title>\n\n<style>\n  body {\n    margin: 0;\n    padding: 0;\n    background: #f5f7fb;\n    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;\n    color: #172033;\n    direction: rtl;\n    text-align: right;\n  }\n  .wrapper { width: 100%; padding: 35px 15px; }\n  .container { max-width: 760px; margin: auto; background: #ffffff; border-radius: 18px; overflow: hidden; border: 1px solid #e7eaf0; }\n  .header { padding: 32px; background: #111827; color: #ffffff; }\n  .brand { font-size: 13px; font-weight: bold; letter-spacing: 1px; opacity: 0.7; }\n  .header h1 { margin: 12px 0 8px; font-size: 28px; }\n  .header p { margin: 0; color: #cbd5e1; font-size: 14px; }\n  .idea-box { margin: 25px 32px 0; padding: 20px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 14px; }\n  .idea-label { font-size: 12px; color: #64748b; font-weight: bold; }\n  .idea-name { margin-top: 6px; font-size: 21px; font-weight: bold; color: #111827; }\n  .content { padding: 32px; }\n  .section { margin-bottom: 32px; }\n  .section-title { font-size: 18px; font-weight: bold; color: #111827; margin-bottom: 14px; }\n  .card { padding: 22px; border-radius: 15px; background: #f8fafc; border: 1px solid #e5e7eb; white-space: pre-line; }\n  .bullet-list { list-style: none; padding: 0; margin: 0; }\n  .bullet-list li { position: relative; padding-right: 22px; margin-bottom: 10px; font-size: 14px; line-height: 1.7; color: #334155; }\n  .bullet-list li::before { content: \"•\"; position: absolute; right: 0; color: #4f46e5; font-weight: bold; font-size: 18px; }\n  .verdict { padding: 25px; border-radius: 15px; background: #111827; color: #ffffff; font-size: 15px; line-height: 1.8; white-space: pre-line; }\n  .footer { padding: 24px 32px; border-top: 1px solid #e5e7eb; background: #fafafa; text-align: center; color: #94a3b8; font-size: 11px; }\n</style>\n</head>\n\n<body>\n<div class=\"wrapper\">\n  <div class=\"container\">\n\n    <div class=\"header\">\n      <div class=\"brand\">STARTUP IDEA REVIEW</div>\n      <h1>تقرير تحليل المنافسين</h1>\n      <p>دراسة المشهد التنافسي والفرص المتاحة</p>\n    </div>\n\n    <div class=\"idea-box\">\n      <div class=\"idea-label\">فكرة المشروع</div>\n      <div class=\"idea-name\">{{ $json.ideaName || \"تحليل الفكرة\" }}</div>\n    </div>\n\n    <div class=\"content\">\n\n      <!-- 1. COMPETITION OVERVIEW -->\n      <div class=\"section\">\n        <div class=\"section-title\">١. نظرة عامة على المنافسة</div>\n        <div class=\"card\">{{ $json['Competition Overview'] || \"غير محدد\" }}</div>\n      </div>\n\n      <!-- 2. COMPETITORS -->\n      <div class=\"section\">\n        <div class=\"section-title\">٢. المنافسون</div>\n        <div class=\"card\">{{ $json['Competitors'] || \"غير محدد\" }}</div>\n      </div>\n\n      <!-- 3. COMPETITIVE COMPARISON -->\n      <div class=\"section\">\n        <div class=\"section-title\">٣. المقارنة التنافسية</div>\n        <div class=\"card\">{{ $json['Competitive Comparison'] || \"غير محدد\" }}</div>\n      </div>\n\n      <!-- 4. COMPETITIVE GAPS -->\n      <div class=\"section\">\n        <div class=\"section-title\">٤. الفجوات التنافسية</div>\n        <div class=\"card\">{{ $json['Competitive Gaps'] || \"غير محدد\" }}</div>\n      </div>\n\n      <!-- 5. BIGGEST COMPETITOR -->\n      <div class=\"section\">\n        <div class=\"section-title\">٥. أكبر منافس</div>\n        <div class=\"card\">{{ $json['Biggest Competitor'] || \"غير محدد\" }}</div>\n      </div>\n\n      <!-- 6. STARTUP POSITION -->\n      <div class=\"section\">\n        <div class=\"section-title\">٦. الموقع التنافسي للمشروع</div>\n        <div class=\"card\">{{ $json['Startup Position'] || \"غير محدد\" }}</div>\n      </div>\n\n      <!-- 7. FINAL COMPETITIVE VERDICT -->\n      <div class=\"section\">\n        <div class=\"section-title\">٧. الحكم التنافسي النهائي</div>\n        <div class=\"verdict\">{{ $json['Final Competitive Verdict'] || \"لا يوجد حكم تنافسي نهائي.\" }}</div>\n      </div>\n\n    </div>\n\n    <div class=\"footer\">\n      Generated by Startup Idea Review <br> Competitor Analysis Report\n    </div>\n\n  </div>\n</div>\n</body>\n</html>",
+        "message": "=<!DOCTYPE html>\n<html lang=\"ar\" dir=\"rtl\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Competitor Analysis Report</title>\n\n<style>\n  body {\n    margin: 0;\n    padding: 0;\n    background: #f5f7fb;\n    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;\n    color: #172033;\n    direction: rtl;\n    text-align: right;\n  }\n  .wrapper { width: 100%; padding: 35px 15px; }\n  .container { max-width: 760px; margin: auto; background: #ffffff; border-radius: 18px; overflow: hidden; border: 1px solid #e7eaf0; }\n  .header { padding: 32px; background: #111827; color: #ffffff; }\n  .brand { font-size: 13px; font-weight: bold; letter-spacing: 1px; opacity: 0.7; }\n  .header h1 { margin: 12px 0 8px; font-size: 28px; }\n  .header p { margin: 0; color: #cbd5e1; font-size: 14px; }\n  .idea-box { margin: 25px 32px 0; padding: 20px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 14px; }\n  .idea-label { font-size: 12px; color: #64748b; font-weight: bold; }\n  .idea-name { margin-top: 6px; font-size: 21px; font-weight: bold; color: #111827; }\n  .content { padding: 32px; }\n  .section { margin-bottom: 32px; }\n  .section-title { font-size: 18px; font-weight: bold; color: #111827; margin-bottom: 14px; }\n  .card { padding: 22px; border-radius: 15px; background: #f8fafc; border: 1px solid #e5e7eb; }\n  .bullet-list { list-style: none; padding: 0; margin: 0; }\n  .bullet-list li { position: relative; padding-right: 22px; margin-bottom: 10px; font-size: 14px; line-height: 1.7; color: #334155; }\n  .bullet-list li:last-child { margin-bottom: 0; }\n  .bullet-list li::before { content: \"•\"; position: absolute; right: 0; color: #4f46e5; font-weight: bold; font-size: 18px; }\n  .verdict { padding: 25px; border-radius: 15px; background: #111827; color: #ffffff; font-size: 15px; line-height: 1.8; }\n  .verdict-list { list-style: none; padding: 0; margin: 0; }\n  .verdict-list li { position: relative; padding-right: 22px; margin-bottom: 10px; font-size: 14px; line-height: 1.7; color: #e2e8f0; }\n  .verdict-list li:last-child { margin-bottom: 0; }\n  .verdict-list li::before { content: \"•\"; position: absolute; right: 0; color: #818cf8; font-weight: bold; font-size: 18px; }\n  .footer { padding: 24px 32px; border-top: 1px solid #e5e7eb; background: #fafafa; text-align: center; color: #94a3b8; font-size: 11px; }\n</style>\n</head>\n\n<body>\n<div class=\"wrapper\">\n  <div class=\"container\">\n\n    <div class=\"header\">\n      <div class=\"brand\">STARTUP IDEA REVIEW</div>\n      <h1>تقرير تحليل المنافسين</h1>\n      <p>دراسة المشهد التنافسي والفرص المتاحة</p>\n    </div>\n\n    <div class=\"idea-box\">\n      <div class=\"idea-label\">فكرة المشروع</div>\n      <div class=\"idea-name\">{{ $('Append row in sheet6').item.json['Idea Name'] || \"تحليل الفكرة\" }}</div>\n    </div>\n\n    <div class=\"content\">\n\n      <!-- 1. COMPETITION OVERVIEW -->\n      <div class=\"section\">\n        <div class=\"section-title\">١. نظرة عامة على المنافسة</div>\n        <div class=\"card\">\n          <ul class=\"bullet-list\">\n            {{ ($('Append row in sheet6').item.json['Competition Overview'] || '').split('\\n').map(i => i.replace(/^[\\s•\\-\\*]+/, '').trim()).filter(Boolean).map(i => '<li>' + i + '</li>').join('') || '<li>غير محدد</li>' }}\n          </ul>\n        </div>\n      </div>\n\n      <!-- 2. COMPETITORS -->\n      <div class=\"section\">\n        <div class=\"section-title\">٢. المنافسون</div>\n        <div class=\"card\">\n          <ul class=\"bullet-list\">\n            {{ ($('Append row in sheet6').item.json['Competitors'] || '').split('\\n').map(i => i.replace(/^[\\s•\\-\\*]+/, '').trim()).filter(Boolean).map(i => '<li>' + i + '</li>').join('') || '<li>غير محدد</li>' }}\n          </ul>\n        </div>\n      </div>\n\n      <!-- 3. COMPETITIVE COMPARISON -->\n      <div class=\"section\">\n        <div class=\"section-title\">٣. المقارنة التنافسية</div>\n        <div class=\"card\">\n          <ul class=\"bullet-list\">\n            {{ ($('Append row in sheet6').item.json['Competitive Comparison'] || '').split('\\n').map(i => i.replace(/^[\\s•\\-\\*]+/, '').trim()).filter(Boolean).map(i => '<li>' + i + '</li>').join('') || '<li>غير محدد</li>' }}\n          </ul>\n        </div>\n      </div>\n\n      <!-- 4. COMPETITIVE GAPS -->\n      <div class=\"section\">\n        <div class=\"section-title\">٤. الفجوات التنافسية</div>\n        <div class=\"card\">\n          <ul class=\"bullet-list\">\n            {{ ($('Append row in sheet6').item.json['Competitive Gaps'] || '').split('\\n').map(i => i.replace(/^[\\s•\\-\\*]+/, '').trim()).filter(Boolean).map(i => '<li>' + i + '</li>').join('') || '<li>غير محدد</li>' }}\n          </ul>\n        </div>\n      </div>\n\n      <!-- 5. BIGGEST COMPETITOR -->\n      <div class=\"section\">\n        <div class=\"section-title\">٥. أكبر منافس</div>\n        <div class=\"card\">\n          <ul class=\"bullet-list\">\n            {{ ($('Append row in sheet6').item.json['Biggest Competitor'] || '').split('\\n').map(i => i.replace(/^[\\s•\\-\\*]+/, '').trim()).filter(Boolean).map(i => '<li>' + i + '</li>').join('') || '<li>غير محدد</li>' }}\n          </ul>\n        </div>\n      </div>\n\n      <!-- 6. STARTUP POSITION -->\n      <div class=\"section\">\n        <div class=\"section-title\">٦. الموقع التنافسي للمشروع</div>\n        <div class=\"card\">\n          <ul class=\"bullet-list\">\n            {{ ($('Append row in sheet6').item.json['Startup Position'] || '').split('\\n').map(i => i.replace(/^[\\s•\\-\\*]+/, '').trim()).filter(Boolean).map(i => '<li>' + i + '</li>').join('') || '<li>غير محدد</li>' }}\n          </ul>\n        </div>\n      </div>\n\n      <!-- 7. FINAL COMPETITIVE VERDICT -->\n      <div class=\"section\">\n        <div class=\"section-title\">٧. الحكم التنافسي النهائي</div>\n        <div class=\"verdict\">\n          <ul class=\"verdict-list\">\n            {{ ($('Append row in sheet6').item.json['Final Competitive Verdict'] || '').split('\\n').map(i => i.replace(/^[\\s•\\-\\*]+/, '').trim()).filter(Boolean).map(i => '<li>' + i + '</li>').join('') || '<li>لا يوجد حكم تنافسي نهائي.</li>' }}\n          </ul>\n        </div>\n      </div>\n\n    </div>\n\n    <div class=\"footer\">\n      Generated by Startup Idea Review <br> Competitor Analysis Report\n    </div>\n\n  </div>\n</div>\n</body>\n</html>",
         "options": {
           "appendAttribution": false
         }
@@ -1452,7 +1533,7 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "c4e67320-2bad-4979-8656-70989c07ec17",
+  "versionId": "3a39bd35-3cbb-473d-bdac-492b2a3ef6f5",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "312b8e1c27ba1ae94b15ee40f5b475cef18128657bfd8917a13927efa9db76b9"
